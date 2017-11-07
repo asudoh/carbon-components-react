@@ -2733,6 +2733,10 @@ dot@^1.0.3:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/dot/-/dot-1.1.2.tgz#c7377019fc4e550798928b2b9afeb66abfa1f2f9"
 
+downshift@^1.16.3:
+  version "1.16.3"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-1.16.3.tgz#2095ca648a2fde2f4de39cb1b760731ec86e15a8"
+
 duplexer@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/duplexer/-/duplexer-0.1.1.tgz#ace6ff808c1ce66b57d1ebf97977acb02334cfc1"

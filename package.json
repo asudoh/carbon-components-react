@@ -89,6 +89,7 @@
   },
   "dependencies": {
     "classnames": "2.2.5",
+    "downshift": "^1.16.3",
     "flatpickr": "3.0.7",
     "lodash.debounce": "^4.0.8",
     "react-addons-css-transition-group": "^15.4.2",
