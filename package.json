@@ -12,11 +12,7 @@
     "commitmsg": "validate-commit-msg",
     "lint": "eslint \"src/**/*.js\"",
     "prepublish": "yarn build",
-<<<<<<< HEAD
     "prettier": "prettier --write \"**/*.{scss,css,js}\"",
-=======
-    "prettier": "prettier --write \"**/*.{js,css,scss}\"",
->>>>>>> chore: run prettier
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "start": "yarn storybook",
     "storybook": "start-storybook -p 9000",
