@@ -108,6 +108,7 @@
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.1.0",
     "babel-jest": "^18.0.0",
+    "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.11.1",
@@ -154,7 +155,8 @@
       "stage-1"
     ],
     "plugins": [
-      "transform-object-assign"
+      "transform-object-assign",
+      "dev-expression"
     ]
   },
   "prettier": {
@@ -197,6 +199,9 @@
     "url": "https://github.com/carbon-design-system/carbon-components-react.git"
   },
   "jest": {
+    "globals": {
+      "__DEV__": true
+    },
     "collectCoverageFrom": [
       "components/**/*.js"
     ],
