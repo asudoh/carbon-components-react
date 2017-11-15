@@ -10,7 +10,7 @@
     "ci-check": "yarn lint && yarn test && yarn test-ssr",
     "commit": "git cz",
     "commitmsg": "validate-commit-msg",
-    "lint": "eslint src/**",
+    "lint": "eslint \"src/**/*.js\"",
     "prepublish": "yarn build",
 <<<<<<< HEAD
     "prettier": "prettier --write \"**/*.{scss,css,js}\"",
@@ -83,6 +83,9 @@
       "es6": true,
       "jest": true,
       "jasmine": true
+    },
+    "globals": {
+      "__DEV__": true
     }
   },
   "peerDependencies": {
