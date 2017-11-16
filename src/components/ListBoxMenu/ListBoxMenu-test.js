@@ -3,6 +3,10 @@ import { shallow } from 'enzyme';
 import ListBoxMenu from '../ListBoxMenu';
 import { generateItems, generateGenericItem } from '../../tools/testing/items';
 
+ListBoxMenu.prototype.componentWillMount = function() {
+  this._uniqueId = '_list-box-menu';
+};
+
 describe('ListBoxMenu', () => {
   let mockProps;
 

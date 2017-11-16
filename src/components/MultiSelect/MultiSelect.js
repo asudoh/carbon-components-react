@@ -83,28 +83,36 @@ export default class MultiSelect extends React.Component {
       }
     });
 
-  handleOnChange = selectedItem => {
-    const { selectedItems } = this.state;
-    const selectedIndex = selectedItems.indexOf(selectedItem);
-
-    if (selectedIndex === -1) {
-      this.handleOnAddItem(selectedItem);
-      return;
+  handleOnChange = evt => {
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(evt);
     }
-
-    this.handleOnRemoveItem(selectedIndex);
   };
 
-  handleOnAddItem = item => {
-    this.internalSetState(state => ({
-      selectedItems: state.selectedItems.concat(item),
-    }));
+  handleOnChangeCheckbox = evt => {
+    const { items } = this.props;
+    const { selectedItems } = this.state;
+    const found = selectedItems.find(item => item.id === evt.target.value);
+    if (evt.target.checked && !found) {
+      this.setState({
+        selectedItems: selectedItems.concat(
+          items.filter(item => item.id === evt.target.value)
+        ),
+      });
+    } else if (!evt.target.checked && found) {
+      this.setState({
+        selectedItems: selectedItems.filter(
+          item => item.id !== evt.target.value
+        ),
+      });
+    }
   };
 
-  handleOnRemoveItem = index => {
-    this.internalSetState(state => ({
-      selectedItems: removeAtIndex(state.selectedItems, index),
-    }));
+  handleOnKeyDownMenu = evt => {
+    if (evt.target.type === 'checkbox' && evt.which === 13) {
+      this.invertSelection(evt.target.value);
+    }
   };
 
   handleOnToggleMenu = () => {
@@ -139,8 +147,23 @@ export default class MultiSelect extends React.Component {
       case Downshift.stateChangeTypes.keyDownSpaceButton:
         this.handleOnToggleMenu();
         break;
+      case Downshift.stateChangeTypes.keyDownEnter:
+        this.invertSelection(changes.selectedItem.id);
+        break;
     }
   };
+
+  invertSelection(id) {
+    const { items } = this.props;
+    const { selectedItems } = this.state;
+    const unmatched = selectedItems.filter(item => item.id !== id);
+    this.setState({
+      selectedItems:
+        unmatched.length < selectedItems.length
+          ? unmatched
+          : selectedItems.concat(items.filter(item => item.id === id)),
+    });
+  }
 
   render() {
     const { selectedItems, isOpen } = this.state;
@@ -164,20 +187,14 @@ export default class MultiSelect extends React.Component {
             itemToString={itemToString}
             clearSelection={this.handleClearSelection}
             onToggleMenu={this.handleOnToggleMenu}
+            onChangeCheckbox={this.handleOnChangeCheckbox}
+            onKeyDownMenu={this.handleOnKeyDownMenu}
           />
         )}
       </Downshift>
     );
   }
 }
-
-// Generic utility for safely removing an element at a given index from an
-// array.
-const removeAtIndex = (array, index) => {
-  const result = array.slice();
-  result.splice(index, 1);
-  return result;
-};
 
 export const getSelectedItemsFrom = (items, initialSelectedItems) => {
   if (initialSelectedItems.length > 0) {

@@ -12,6 +12,8 @@ const ListBox = ({
   clearSelection,
   isOpen,
   onToggleMenu,
+  onChangeCheckbox,
+  onKeyDownMenu,
   itemToString,
   highlightedIndex,
   getItemProps,
@@ -40,6 +42,8 @@ const ListBox = ({
           itemToString={itemToString}
           getItemProps={getItemProps}
           highlightedIndex={highlightedIndex}
+          onKeyDownMenu={onKeyDownMenu}
+          onChangeCheckbox={onChangeCheckbox}
         />
       )}
     </div>

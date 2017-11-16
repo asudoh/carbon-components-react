@@ -21,30 +21,6 @@ describe('MultiSelect', () => {
     expect(wrapper.state('isOpen')).toEqual(false);
   });
 
-  describe('#handleOnAddItem', () => {
-    it('should add the given item to the collection of selected items', () => {
-      const items = generateItems(5, generateGenericItem);
-      const wrapper = mount(<MultiSelect label="Field" items={items} />);
-      wrapper.instance().handleOnAddItem(items[0]);
-      expect(wrapper.state('selectedItems')).toEqual([items[0]]);
-    });
-  });
-
-  describe('#handleOnRemoveItem', () => {
-    it('should remove the given item from the collection of selected items', () => {
-      const items = generateItems(5, generateGenericItem);
-      const wrapper = mount(
-        <MultiSelect
-          label="Field"
-          items={items}
-          initialSelectedItems={[0, 1]}
-        />
-      );
-      wrapper.instance().handleOnRemoveItem(0);
-      expect(wrapper.state('selectedItems')).toEqual([items[1]]);
-    });
-  });
-
   describe('#handleOnToggleMenu', () => {
     it('should toggle the boolean `isOpen` field', () => {
       const items = generateItems(5, generateGenericItem);
@@ -74,7 +50,7 @@ describe('MultiSelect', () => {
     });
   });
 
-  describe('#handleOnChange', () => {
+  describe('#handleOnChangeCheckbox', () => {
     it('should add an item to the collection of selected items if it does not exist', () => {
       const items = generateItems(5, generateGenericItem);
       const wrapper = mount(
@@ -84,7 +60,11 @@ describe('MultiSelect', () => {
           initialSelectedItems={[0, 1, 2, 3]}
         />
       );
-      wrapper.instance().handleOnChange(items[4]);
+      wrapper
+        .instance()
+        .handleOnChangeCheckbox({
+          target: { value: items[4].id, checked: true },
+        });
       expect(wrapper.state('selectedItems')).toEqual(items);
     });
 
@@ -93,7 +73,43 @@ describe('MultiSelect', () => {
       const wrapper = mount(
         <MultiSelect label="Field" items={items} initialSelectedItems={[0]} />
       );
-      wrapper.instance().handleOnChange(items[0]);
+      wrapper
+        .instance()
+        .handleOnChangeCheckbox({ target: { value: items[0].id } });
+      expect(wrapper.state('selectedItems')).toEqual([]);
+    });
+  });
+
+  describe('#handleOnKeyDownMenu', () => {
+    it('should add an item to the collection of selected items if it does not exist', () => {
+      const items = generateItems(5, generateGenericItem);
+      const wrapper = mount(
+        <MultiSelect
+          label="Field"
+          items={items}
+          initialSelectedItems={[0, 1, 2, 3]}
+        />
+      );
+      wrapper
+        .instance()
+        .handleOnKeyDownMenu({
+          target: { value: items[4].id, type: 'checkbox' },
+          which: 13,
+        });
+      expect(wrapper.state('selectedItems')).toEqual(items);
+    });
+
+    it('should remove an item from the collection of selected items if it does exist', () => {
+      const items = generateItems(5, generateGenericItem);
+      const wrapper = mount(
+        <MultiSelect label="Field" items={items} initialSelectedItems={[0]} />
+      );
+      wrapper
+        .instance()
+        .handleOnKeyDownMenu({
+          target: { value: items[0].id, type: 'checkbox', checked: true },
+          which: 13,
+        });
       expect(wrapper.state('selectedItems')).toEqual([]);
     });
   });
@@ -181,7 +197,10 @@ describe('MultiSelect', () => {
       wrapper
         .find('.bx--list-box__menu-item')
         .first()
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[0].id, checked: true },
+        });
       expect(wrapper.state('selectedItems')).toEqual([mockProps.items[0]]);
     });
 
@@ -216,7 +235,28 @@ describe('MultiSelect', () => {
       expect(getHighlightedId()).toBe('downshift-1-item-4');
     });
 
-    it('should select an item when a user focuses on an item and hits enter');
+    it('should select an item when a user focuses on an item and hits enter', () => {
+      const wrapper = mount(<MultiSelect {...mockProps} />);
+      const simulateArrowDown = () =>
+        wrapper.find('.bx--list-box__field').simulate('keydown', {
+          key: 'ArrowDown',
+        });
+      wrapper.find('.bx--list-box__field').simulate('click');
+
+      simulateArrowDown();
+      wrapper
+        .find('.bx--list-box__menu-item')
+        .at(0)
+        .simulate('keydown', {
+          which: 13,
+          target: {
+            value: mockProps.items[0].id,
+            checked: true,
+            type: 'checkbox',
+          },
+        });
+      expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(1);
+    });
 
     it('should close the menu when a user clicks outside of the control', () => {
       const wrapper = mount(<MultiSelect {...mockProps} />);
@@ -233,39 +273,63 @@ describe('MultiSelect', () => {
       wrapper
         .find('.bx--list-box__menu-item')
         .at(0)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[0].id, checked: true },
+        });
       wrapper
         .find('.bx--list-box__menu-item')
         .at(1)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[1].id, checked: true },
+        });
       expect(wrapper.find('.bx--list-box__badge-text').text()).toBe('2');
 
       wrapper
         .find('.bx--list-box__menu-item')
         .at(2)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[2].id, checked: true },
+        });
       wrapper
         .find('.bx--list-box__menu-item')
         .at(3)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[3].id, checked: true },
+        });
       expect(wrapper.find('.bx--list-box__badge-text').text()).toBe('4');
 
       wrapper
         .find('.bx--list-box__menu-item')
         .at(0)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[0].id, checked: false },
+        });
       wrapper
         .find('.bx--list-box__menu-item')
         .at(1)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[1].id, checked: false },
+        });
       wrapper
         .find('.bx--list-box__menu-item')
         .at(2)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[2].id, checked: false },
+        });
       wrapper
         .find('.bx--list-box__menu-item')
         .at(3)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[3].id, checked: false },
+        });
       expect(wrapper.find('.bx--list-box__badge-text').length).toBe(0);
     });
 
@@ -275,13 +339,19 @@ describe('MultiSelect', () => {
       wrapper
         .find('.bx--list-box__menu-item')
         .at(0)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[0].id, checked: true },
+        });
       expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(1);
 
       wrapper
         .find('.bx--list-box__menu-item')
         .at(0)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[0].id, checked: false },
+        });
       expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(0);
     });
 
@@ -295,7 +365,10 @@ describe('MultiSelect', () => {
       wrapper
         .find('.bx--list-box__menu-item')
         .at(0)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[0].id, checked: true },
+        });
       expect(wrapper.find('.bx--list-box__menu-item--active').length).toBe(1);
 
       simulateArrowDown();
@@ -311,7 +384,10 @@ describe('MultiSelect', () => {
       wrapper
         .find('.bx--list-box__menu-item')
         .at(0)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[0].id, checked: true },
+        });
       expect(wrapper.state('selectedItems')).toEqual([mockProps.items[0]]);
 
       wrapper.find('.bx--list-box__badge').simulate('click');
@@ -324,7 +400,10 @@ describe('MultiSelect', () => {
       wrapper
         .find('.bx--list-box__menu-item')
         .at(0)
-        .simulate('click');
+        .find('.bx--checkbox')
+        .simulate('change', {
+          target: { value: mockProps.items[0].id, checked: true },
+        });
       expect(wrapper.state('selectedItems')).toEqual([mockProps.items[0]]);
 
       wrapper.find('.bx--list-box__badge').simulate('keydown', {

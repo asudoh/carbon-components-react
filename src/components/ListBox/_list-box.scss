@@ -126,6 +126,10 @@ $list-box-height: rem(40px);
     padding: 0 1rem;
     cursor: pointer;
     user-select: none;
+
+    .bx--checkbox-label {
+      width: 100%;
+    }
   }
 
   .bx--list-box__menu-item:hover,
