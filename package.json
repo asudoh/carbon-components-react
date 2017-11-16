@@ -7,17 +7,17 @@
   "scripts": {
     "build": "node scripts/build.js",
     "build-storybook": "build-storybook",
-    "ci-check": "yarn lint && yarn test && yarn test-ssr",
+    "ci-check": "source ./scripts/set-package-manager.sh; $PACKAGE_CMD run lint && $PACKAGE_CMD test && $PACKAGE_CMD run test-ssr",
     "commit": "git cz",
     "commitmsg": "validate-commit-msg",
     "lint": "eslint src/**",
-    "prepublish": "yarn build",
+    "prepublish": "source ./scripts/set-package-manager.sh; $PACKAGE_CMD run build",
     "prettier": "prettier --write \"**/*.{scss,css,js}\"",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "start": "yarn storybook",
+    "start": "source ./scripts/set-package-manager.sh; $PACKAGE_CMD run storybook",
     "storybook": "start-storybook -p 9000",
     "test": "jest",
-    "test-ssr": "yarn build && node ssr-tests/*.js"
+    "test-ssr": "source ./scripts/set-package-manager.sh; $PACKAGE_CMD run build && node ssr-tests/*.js"
   },
   "keywords": [
     "react",
