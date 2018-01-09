@@ -78,7 +78,8 @@ class FloatingMenu extends React.Component {
       const hasChange =
         props.menuPosition !== this.props.menuPosition ||
         props.menuDirection !== this.props.menuDirection ||
-        props.menuOffset !== this.props.menuOffset;
+        props.menuOffset !== this.props.menuOffset ||
+        props.open !== this.props.open;
       if (hasChange) {
         const adjustedOffsets = this.adjustOffsets(
           this.props.menuOffset,

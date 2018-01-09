@@ -158,7 +158,8 @@ export default class OverflowMenu extends Component {
             <FloatingMenu
               menuPosition={this.state.menuPosition}
               menuDirection="bottom"
-              menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+              menuOffset={flipped ? menuOffsetFlip : menuOffset}
+              open={open}>
               <ul className={overflowMenuOptionsClasses}>
                 {childrenWithProps}
               </ul>
