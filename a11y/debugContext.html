@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+%X_UA_COMPATIBLE%
+    <title>Karma DEBUG RUNNER</title>
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <style type="text/css">
+      .offleft {
+        position: absolute;
+        top: 0;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div role="navigation" class="offleft">
+      <a href="#main-content" tabindex="0">Skip to main content</a>
+    </div>
+    <main id="main-content" role="main"></main>
+    <script src="context.js"></script>
+    <script src="debug.js"></script>
+    <script type="text/javascript">
+      %CLIENT_CONFIG%
+      %MAPPINGS%
+    </script>
+    %SCRIPTS%
+    <script type="text/javascript">
+      window.__karma__.loaded();
+    </script>
+  </body>
+</html>

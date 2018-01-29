@@ -1,4 +1,5 @@
-# Ignore generated folders
+# Ignore generated folders/files
+.aat.yml
 node_modules
 es
 lib
