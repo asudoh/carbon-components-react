@@ -82,13 +82,12 @@ const Icon = ({
   fillRule,
   height,
   name,
+  icon = isPrefixed(name) ? findIcon(name) : findIcon(`icon--${name}`),
   role,
   style,
   width,
   ...other
 }) => {
-  const icon = isPrefixed(name) ? findIcon(name) : findIcon(`icon--${name}`);
-
   const props = {
     className,
     fill,
@@ -127,6 +126,7 @@ Icon.propTypes = {
 
 Icon.defaultProps = {
   fillRule: 'evenodd',
+  name: '',
   role: 'img',
   description: 'Provide a description that will be used as the title',
 };
