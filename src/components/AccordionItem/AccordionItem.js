@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import Icon from '../Icon';
+import { settings } from 'carbon-components';
+
+const { prefix } = settings;
 
 export default class AccordionItem extends Component {
   static propTypes = {
@@ -61,9 +64,9 @@ export default class AccordionItem extends Component {
 
     const classNames = classnames(
       {
-        'bx--accordion__item--active': this.state.open,
+        [`${prefix}--accordion__item--active`]: this.state.open,
       },
-      'bx--accordion__item',
+      `${prefix}--accordion__item`,
       className
     );
     return (
@@ -75,17 +78,17 @@ export default class AccordionItem extends Component {
         {...other}>
         <button
           type="button"
-          className="bx--accordion__heading"
+          className={`${prefix}--accordion__heading`}
           role="tab"
           onClick={this.handleHeadingClick}>
           <Icon
-            className="bx--accordion__arrow"
+            className={`${prefix}--accordion__arrow`}
             name="chevron--right"
             description="Expand/Collapse"
           />
-          <p className="bx--accordion__title">{title}</p>
+          <p className={`${prefix}--accordion__title`}>{title}</p>
         </button>
-        <div className="bx--accordion__content">{children}</div>
+        <div className={`${prefix}--accordion__content`}>{children}</div>
       </li>
     );
   }
