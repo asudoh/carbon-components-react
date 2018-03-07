@@ -285,8 +285,12 @@ class FloatingMenu extends React.Component {
       });
     } else {
       if (this.el && this.el.firstChild) {
-        this._menuBody = this.el.firstChild;
-        document.body.appendChild(this._menuBody);
+        const menuBody = (this._menuBody = this.el.firstChild);
+        document.body.appendChild(menuBody);
+        const { menuRef } = this.props;
+        if (menuRef) {
+          menuRef(menuBody);
+        }
       }
       this._updateMenuSize();
     }
@@ -303,6 +307,10 @@ class FloatingMenu extends React.Component {
     } else if (this._menuBody) {
       // Moves the menu body back to the portal container so that React unmount code does not crash
       this.el.appendChild(this._menuBody);
+      const { menuRef } = this.props;
+      if (menuRef) {
+        menuRef(null);
+      }
     }
   }
 

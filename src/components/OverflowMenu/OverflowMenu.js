@@ -204,9 +204,6 @@ export default class OverflowMenu extends Component {
 
   handleKeyDown = evt => {
     const key = evt.key || evt.which;
-    const isOverflowMenuItem =
-      evt.target &&
-      evt.target.classList.contains('bx--overflow-menu-options__btn');
     const isOverflowMenuIcon =
       evt.target && evt.target.classList.contains('bx--overflow-menu');
     if ((key === 'ArrowDown' || key === 40) && isOverflowMenuIcon) {
@@ -214,21 +211,45 @@ export default class OverflowMenu extends Component {
         evt.target.querySelector('button').focus();
       }
     }
-    if ((key === 'ArrowDown' || key === 40) && isOverflowMenuItem) {
-      if (evt.target.parentElement.nextSibling) {
-        evt.target.parentElement.nextSibling.querySelector('button').focus();
-      }
-    } else if (key === 'ArrowUp' || key === 38) {
-      if (evt.target.parentElement.previousSibling) {
-        evt.target.parentElement.previousSibling
-          .querySelector('button')
-          .focus();
+    const direction = {
+      38: -1,
+      40: 1,
+    }[evt.which];
+    const menuBody = this.menuBody;
+    const items = menuBody && [
+      ...menuBody.querySelectorAll('.bx--overflow-menu-options__btn'),
+    ];
+    if (
+      typeof direction !== 'undefined' &&
+      menuBody &&
+      menuBody.contains(evt.target)
+    ) {
+      const button =
+        evt.target && evt.target.closest('.bx--overflow-menu-options__btn');
+      // `items.indexOf(button)` may be -1 (Scenario of no previous focus)
+      const nextItem = items[items.indexOf(button) + direction];
+      if (nextItem) {
+        nextItem.focus();
       } else {
-        evt.target.parentElement.parentElement.parentElement.focus();
+        this.setState({ open: false }, () => {
+          if (this.menuEl) {
+            this.menuEl.focus();
+          }
+        });
       }
     }
-    if (key === 'Enter' || key === 13 || key === ' ' || key === 32) {
-      this.setState({ open: !this.state.open });
+    if ([13, 32].indexOf(evt.which) >= 0) {
+      const shouldBeOpen = !this.state.open;
+      this.setState({ open: shouldBeOpen }, () => {
+        if (shouldBeOpen) {
+          const firstItem =
+            this.menuBody &&
+            this.menuBody.querySelector('.bx--overflow-menu-options__btn');
+          firstItem && firstItem.focus();
+        } else {
+          this.menuEl && this.menuEl.focus();
+        }
+      });
     }
   };
 
@@ -242,6 +263,10 @@ export default class OverflowMenu extends Component {
 
   bindMenuEl = menuEl => {
     this.menuEl = menuEl;
+  };
+
+  bindMenuBody = menuBody => {
+    this.menuBody = menuBody;
   };
 
   render() {
@@ -301,7 +326,8 @@ export default class OverflowMenu extends Component {
       <div role="presentation">
         <FloatingMenu
           menuPosition={this.state.menuPosition}
-          menuOffset={flipped ? menuOffsetFlip : menuOffset}>
+          menuOffset={flipped ? menuOffsetFlip : menuOffset}
+          menuRef={this.bindMenuBody}>
           {menuBody}
         </FloatingMenu>
       </div>
