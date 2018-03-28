@@ -1,4 +1,4 @@
-import { initialSortState } from './sorting';
+import { initialSortState, getSortedRowIds } from './sorting';
 import normalize from '../tools/normalize';
 
 /**
@@ -10,12 +10,23 @@ import normalize from '../tools/normalize';
  */
 const getDerivedStateFromProps = (props, prevState) => {
   const { rowIds, rowsById, cellsById } = normalize(props.rows, props.headers);
+  const { locale, sortRow } = props;
+  const sortDirection = prevState.sortDirection || initialSortState;
+  const sortHeaderKey = prevState.sortHeaderKey || null;
   return {
-    rowIds,
+    rowIds: getSortedRowIds({
+      rowIds,
+      cellsById,
+      initialRowOrder: rowIds,
+      locale,
+      sortRow,
+      key: sortHeaderKey,
+      sortDirection,
+    }),
     rowsById,
     cellsById,
-    sortDirection: prevState.sortDirection || initialSortState,
-    sortHeaderKey: prevState.sortHeaderKey || null,
+    sortDirection,
+    sortHeaderKey,
     // Copy over rowIds so the reference doesn't mutate the stored
     // `initialRowOrder`
     initialRowOrder: rowIds.slice(),

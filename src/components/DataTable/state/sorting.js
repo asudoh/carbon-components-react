@@ -1,3 +1,4 @@
+import warning from 'warning';
 import { sortRows } from '../tools/sorting';
 
 /**
@@ -56,6 +57,13 @@ export const getNextSortState = (props, state, { key }) => {
 };
 
 export const getCurrentSortState = (props, state, { key }) => {
+  warning(
+    false,
+    `
+      getCurrentSortState() is deprecated.
+      Use getSortedRowIds() to get sorted rows for props/state combination.
+    `
+  );
   return getSortedState(props, state, key, state.sortDirection);
 };
 
@@ -80,20 +88,48 @@ export const getCurrentSortState = (props, state, { key }) => {
 const getSortedState = (props, state, key, sortDirection) => {
   const { rowIds, cellsById, initialRowOrder } = state;
   const { locale, sortRow } = props;
-  const nextRowIds =
-    sortDirection !== sortStates.NONE
-      ? sortRows({
-          rowIds,
-          cellsById,
-          sortDirection,
-          key,
-          locale,
-          sortRow,
-        })
-      : initialRowOrder;
   return {
+    rowIds: getSortedRowIds({
+      rowIds,
+      cellsById,
+      initialRowOrder,
+      locale,
+      sortRow,
+      key,
+      sortDirection,
+    }),
     sortHeaderKey: key,
-    sortDirection: sortDirection,
-    rowIds: nextRowIds,
+    sortDirection,
   };
 };
+
+/**
+ * @param {Object} props
+ * @param {Array<string>} props.rowIds Array of row ids
+ * @param {Object} props.cellsById Lookup object for cells by id
+ * @param {Array<string>} props.initialRowOrder Initial row order for the current set of rows
+ * @param {string} props.locale The current locale
+ * @param {Function} props.sortRow Method to handle sorting a collection of rows
+ * @param {string} props.key The key for the given header we are derving the sorted state for
+ * @param {string} props.sortDirection The sortState that we want to order by
+ * @returns {Array<string>} The sorted row IDs
+ */
+export const getSortedRowIds = ({
+  rowIds,
+  cellsById,
+  initialRowOrder,
+  locale,
+  sortRow,
+  key,
+  sortDirection,
+}) =>
+  sortDirection !== sortStates.NONE
+    ? sortRows({
+        rowIds,
+        cellsById,
+        sortDirection,
+        key,
+        locale,
+        sortRow,
+      })
+    : initialRowOrder;

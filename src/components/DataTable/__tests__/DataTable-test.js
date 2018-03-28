@@ -337,28 +337,40 @@ describe('DataTable', () => {
           },
         ],
         locale: 'en',
-        render: jest.fn(({ rows, headers, getHeaderProps }) => (
-          <Table>
-            <TableHead>
-              <TableRow>
-                {headers.map(header => (
-                  <TableHeader {...getHeaderProps({ header })}>
-                    {header.header}
-                  </TableHeader>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map(row => (
-                <TableRow key={row.id}>
-                  {row.cells.map(cell => (
-                    <TableCell key={cell.id}>{cell.value}</TableCell>
+        render: jest.fn(
+          ({
+            rows,
+            headers,
+            getHeaderProps,
+            onInputChange,
+            getSelectionProps,
+          }) => (
+            <Table>
+              <TableToolbar>
+                <TableToolbarSearch onChange={onInputChange} />
+                <TableSelectAll {...getSelectionProps()} />
+              </TableToolbar>
+              <TableHead>
+                <TableRow>
+                  {headers.map(header => (
+                    <TableHeader {...getHeaderProps({ header })}>
+                      {header.header}
+                    </TableHeader>
                   ))}
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )),
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.id}>
+                    {row.cells.map(cell => (
+                      <TableCell key={cell.id}>{cell.value}</TableCell>
+                    ))}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )
+        ),
       };
     });
 
@@ -380,7 +392,94 @@ describe('DataTable', () => {
       wrapper.setProps({ rows: nextRows });
 
       const nextArgs = mockProps.render.mock.calls[1][0];
-      expect(nextArgs.rows.length).toBe(nextRows.length);
+      expect(nextArgs.rows.map(row => row.id)).toEqual(['b', 'a', 'c', 'd']);
+    });
+
+    it('should keep rows filtered after adding rows', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      const filterInput = getFilterInput(wrapper);
+
+      filterInput.simulate('change', {
+        target: {
+          value: 'Field 1',
+        },
+      });
+
+      const nextRows = [
+        ...mockProps.rows,
+        {
+          id: 'd',
+          fieldA: 'Field 4:A',
+          fieldB: 'Field 4:B',
+        },
+      ];
+
+      wrapper.setProps({ rows: nextRows });
+
+      const nextArgs = getLastCallFor(mockProps.render)[0];
+      expect(nextArgs.rows.map(row => row.id)).toEqual(['a']);
+    });
+
+    it('should keep batch action after adding rows, as long as some existing rows are selected', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      getSelectAll(wrapper).simulate('click');
+
+      const nextRows = [
+        ...mockProps.rows.map(row => ({ ...row, isSelected: true })),
+        {
+          id: 'd',
+          fieldA: 'Field 4:A',
+          fieldB: 'Field 4:B',
+          isSelected: false,
+        },
+      ];
+
+      wrapper.setProps({ rows: nextRows });
+
+      expect(getSelectAll(wrapper).prop('checked')).toBe(false);
+      const { getBatchActionProps, selectedRows } = getLastCallFor(
+        mockProps.render
+      )[0];
+      expect(getBatchActionProps().shouldShowBatchActions).toBe(true);
+      expect(selectedRows.length).toBe(3);
+    });
+
+    it('should keep selected all state after adding rows, as long as all existing rows and new row are selected', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      getSelectAll(wrapper).simulate('click');
+
+      const nextRows = [
+        ...mockProps.rows.map(row => ({ ...row, isSelected: true })),
+        {
+          id: 'd',
+          fieldA: 'Field 4:A',
+          fieldB: 'Field 4:B',
+          isSelected: true,
+        },
+      ];
+
+      wrapper.setProps({ rows: nextRows });
+
+      expect(getSelectAll(wrapper).prop('checked')).toBe(true);
+      const { getBatchActionProps, selectedRows } = getLastCallFor(
+        mockProps.render
+      )[0];
+      expect(getBatchActionProps().shouldShowBatchActions).toBe(true);
+      expect(selectedRows.length).toBe(4);
+    });
+
+    it('should update rows when receiving new props', () => {
+      const wrapper = mount(<DataTable {...mockProps} />);
+      const args = mockProps.render.mock.calls[0][0];
+
+      expect(args.rows.length).toEqual(mockProps.rows.length);
+
+      const nextRows = mockProps.rows.reverse();
+
+      wrapper.setProps({ rows: nextRows });
+
+      const nextArgs = mockProps.render.mock.calls[1][0];
+      expect(nextArgs.rows.map(row => row.id)).toEqual(['c', 'a', 'b']);
     });
 
     it('should add additional headers when receiving new props', () => {
