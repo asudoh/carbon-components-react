@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { storiesOf } from '@storybook/react';
-import Tooltip from '../Tooltip';
+import Tooltip, { getMenuOffset, getFloatingPosition } from '../Tooltip';
 
 storiesOf('Tooltip', module)
   .addWithInfo(
@@ -190,4 +190,89 @@ storiesOf('Tooltip', module)
         </Tooltip>
       </div>
     )
+  )
+  .addWithInfo(
+    'invert direction when tooltip is out of viewport',
+    `
+    Tooltips are used to supply additional information to an element when hovering over it. By default,
+    the tooltip will render above the element. The example below shows the default scenario.
+  `,
+    () => {
+      class TooltipWrapper extends Component {
+        _triggerEl = null;
+
+        state = { direction: this.props.direction };
+
+        _setTriggerEl = el => {
+          this._triggerEl = el;
+        };
+
+        _getMenuOffset = (menuBody, menuDirection) => {
+          const { direction } = this.state;
+          const menuSize = menuBody.getBoundingClientRect();
+          const offset = getMenuOffset(menuBody, menuDirection);
+          const position = getFloatingPosition({
+            menuSize,
+            refPosition: this._triggerEl.getBoundingClientRect(),
+            offset,
+            direction,
+            scrollY: doc.defaultView.scrollY,
+          });
+          const doc = menuBody.ownerDocument;
+          const viewportHeight = Math.max(
+            doc.documentElement.clientHeight,
+            doc.defaultView.innerHeight || 0
+          );
+          const { top } = position;
+          if (
+            menuDirection === 'bottom' &&
+            (top + menuSize.height > viewportHeight + scrollY || top < 0)
+          ) {
+            this.setState({ direction: 'top' });
+          }
+          return { top: 0, left: 0 };
+        };
+
+        componentWillReceiveProps(props) {
+          const { direction } = props;
+          if (this.props.direction !== direction) {
+            this.setState({ direction });
+          }
+        }
+
+        render() {
+          const { direction } = this.state;
+          return (
+            <Tooltip
+              triggerRef={this._setTriggerEl}
+              menuRef={this.menuRef}
+              menuOffset={this._getMenuOffset}
+              {...this.props}
+              direction={direction}
+            />
+          );
+        }
+      }
+
+      return (
+        <div>
+          Tooltip direction: top
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+            <div style={{ marginTop: '2rem' }}>
+              <TooltipWrapper
+                triggerText={`isDynamicDirection: ${num % 2 === 1}`}
+                direction="bottom"
+                isDynamicDirection={num % 2 === 1}>
+                <p className="bx--tooltip__label">Tooltip direction is top</p>
+                <p>
+                  Component will calculate whether the defined direction will
+                  cause the tooltip to go beyond the viewport. If so, it will
+                  use the opposite direction.
+                </p>
+              </TooltipWrapper>
+            </div>
+          ))}
+        </div>
+      );
+    }
   );

@@ -63,9 +63,8 @@ const hasChangeInOffset = (oldMenuOffset = {}, menuOffset = {}) => {
  * @param {string} [params.direction=bottom] The menu direction.
  * @param {number} [params.scrollY=0] The scroll position of the viewport.
  * @returns {FloatingMenu~offset} The position of the menu, relative to the top-left corner of the viewport.
- * @private
  */
-const getFloatingPosition = ({
+export const getFloatingPosition = ({
   menuSize,
   refPosition,
   offset = {},

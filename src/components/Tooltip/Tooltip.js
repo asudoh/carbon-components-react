@@ -11,13 +11,14 @@ import FloatingMenu, {
 } from '../../internal/FloatingMenu';
 import ClickListener from '../../internal/ClickListener';
 
+export { getFloatingPosition } from '../../internal/FloatingMenu';
+
 /**
  * @param {Element} menuBody The menu body with the menu arrow.
  * @param {string} menuDirection Where the floating menu menu should be placed relative to the trigger button.
  * @returns {FloatingMenu~offset} The adjustment of the floating menu position, upon the position of the menu arrow.
- * @private
  */
-const getMenuOffset = (menuBody, menuDirection) => {
+export const getMenuOffset = (menuBody, menuDirection) => {
   const arrowStyle = menuBody.ownerDocument.defaultView.getComputedStyle(
     menuBody,
     ':before'
@@ -269,6 +270,7 @@ export default class Tooltip extends Component {
       iconName,
       iconDescription,
       menuOffset,
+      triggerRef = () => {},
       // Exclude `clickToOpen` from `other` to avoid passing it along to `<div>`
       // eslint-disable-next-line no-unused-vars
       clickToOpen,
@@ -308,7 +310,7 @@ export default class Tooltip extends Component {
                   name={iconName}
                   description={iconDescription}
                   iconRef={node => {
-                    this.triggerEl = node;
+                    triggerRef((this.triggerEl = node));
                   }}
                 />
               </div>
@@ -318,7 +320,7 @@ export default class Tooltip extends Component {
               id={triggerId}
               className={triggerClasses}
               ref={node => {
-                this.triggerEl = node;
+                triggerRef((this.triggerEl = node));
               }}
               onMouseOver={evt => this.handleMouse(evt)}
               onMouseOut={evt => this.handleMouse(evt)}
