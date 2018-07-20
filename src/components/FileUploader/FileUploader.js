@@ -168,8 +168,10 @@ export class FileUploaderButton extends Component {
 
 export function Filename({
   iconDescription,
+  onKeyDown = () => {},
   status = 'uploading',
   style = {},
+  tabIndex = 0,
   ...other
 }) {
   switch (status) {
@@ -178,6 +180,9 @@ export function Filename({
         <div
           className="bx--loading"
           style={{ ...style, width: '1rem', height: '1rem' }}
+          tabIndex={tabIndex}
+          onKeyDown={onKeyDown}
+          role="button"
           {...other}>
           <svg className="bx--loading__svg" viewBox="-42 -42 84 84">
             <circle cx="0" cy="0" r="37.5" />
@@ -191,6 +196,9 @@ export function Filename({
           className="bx--file-close"
           icon={iconCloseSolid}
           style={style}
+          tabIndex={tabIndex}
+          onKeyDown={onKeyDown}
+          role="button"
           {...other}
         />
       );
@@ -201,6 +209,9 @@ export function Filename({
           className="bx--file-complete"
           icon={iconCheckmarkSolid}
           style={style}
+          tabIndex={tabIndex}
+          onKeyDown={onKeyDown}
+          role="button"
           {...other}
         />
       );
@@ -209,8 +220,10 @@ export function Filename({
   }
 }
 Filename.propTypes = {
+  onKeyDown: PropTypes.func,
   style: PropTypes.object,
   status: PropTypes.oneOf(['edit', 'complete', 'uploading']),
+  tabIndex: PropTypes.number,
 };
 
 export default class FileUploader extends Component {
