@@ -582,6 +582,19 @@
         "test",
         "doc"
       ]
+    },
+    {
+      "login": "emyarod",
+      "name": "emyarod",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/8265238?v=4",
+      "profile": "https://github.com/emyarod",
+      "contributions": [
+        "bug",
+        "code",
+        "doc",
+        "example",
+        "test"
+      ]
     }
   ],
   "repoType": "github"
