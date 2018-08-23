@@ -15,6 +15,7 @@ const props = () => ({
   hideTextInput: boolean('Without text input (hideTextInput)', false),
   min: number('The minimum value (min)', 0),
   max: number('The maximum value (max)', 100),
+  value: number('The current value (value)', 50),
   step: number('The step (step)', 1),
   stepMuliplier: number(
     'The step factor for Shift+arrow keys (stepMuliplier)',

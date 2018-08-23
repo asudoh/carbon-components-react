@@ -89,7 +89,7 @@ export default class Slider extends PureComponent {
     /**
      * The `name` attribute of the `<input>`.
      */
-    name: PropTypes.bool,
+    name: PropTypes.string,
 
     /**
      * The `type` attribute of the `<input>`.
@@ -119,21 +119,39 @@ export default class Slider extends PureComponent {
     light: false,
   };
 
-  state = {
-    dragging: false,
-    value: this.props.value,
-    left: 0,
-  };
+  // state = {
+  //   dragging: false,
+  //   value: this.props.value,
+  //   left: 0,
+  // };
 
-  componentDidMount() {
-    this.updatePosition();
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (!isEqual(nextProps, this.props)) {
-      this.updatePosition();
+  static getDerivedStateFromProps(props, state) {
+    const { value } = props;
+    const { prevProps = {} } = state || {};
+    if (state && isEqual(prevProps, props)) {
+      return null;
     }
+    if (value === prevProps.value) {
+      this.updatePosition();
+      return { prevProps: props };
+    }
+    const { min, max } = props;
+    const range = max - min;
+    const adjustedValue = Math.max(min, Math.min(max, value));
+    const left = (adjustedValue - min) / range * 100;
+    return { left, value: adjustedValue, prevProps: props };
   }
+
+  // componentDidMount() {
+  //   this.updatePosition();
+  // }
+
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   const equal = isEqual(nextProps, this.props);
+  //   if (!equal) {
+  //     this.updatePosition();
+  //   }
+  // }
 
   updatePosition = evt => {
     if (evt && this.props.disabled) {
