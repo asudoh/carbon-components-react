@@ -91,8 +91,8 @@ export class FileUploaderButton extends Component {
   state = {};
 
   static getDerivedStateFromProps({ labelText }, state) {
-    const { prevLabelText } = state || {};
-    return state && prevLabelText === labelText
+    const { prevLabelText } = state;
+    return prevLabelText === labelText
       ? null
       : {
           labelText,
