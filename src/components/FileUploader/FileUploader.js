@@ -4,9 +4,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import uid from '../../tools/uniqueId';
 import { ButtonTypes } from '../../prop-types/types';
-import FileUploadStatus from '../FileUploadStatus/FileUploadStatus';
+import FileUploadStatus, {
+  FileUploadStatusIcon,
+} from '../FileUploadStatus/FileUploadStatus';
 
-export { FileUploadStatus as Filename };
+export { FileUploadStatusIcon as Filename };
 
 export class FileUploaderButton extends Component {
   state = {};

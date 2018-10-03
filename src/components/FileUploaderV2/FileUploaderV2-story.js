@@ -12,7 +12,8 @@ import {
   select,
   text,
 } from '@storybook/addon-knobs';
-import FileUploaderV2, { FileUploaderButtonV2 } from '../FileUploaderV2';
+import FileUploaderV2 from '../FileUploaderV2';
+import FileUploadStatus from '../FileUploadStatus';
 import FileUploaderSkeleton from '../FileUploaderSkeleton/FileUploader.Skeleton';
 import Button from '../Button';
 import uid from '../../tools/uniqueId';
@@ -72,9 +73,9 @@ class App extends React.Component {
       body: file,
     }).then(res => res.json());
 
-  handleChange = ({ evt, multiple }) => {
+  handleChange = evt => {
     evt.stopPropagation();
-    const files = multiple ? [...this.state.files] : [];
+    const files = this.props.multiple ? [...this.state.files] : [];
     [...evt.target.files].forEach(file => {
       const uuid = uid();
       files.push({
@@ -102,12 +103,17 @@ class App extends React.Component {
     this.setState({ files });
   };
 
-  handleClick = ({ evt, index }) => {
-    if (evt) {
-      evt.stopPropagation();
+  handleEventOnUploadStatus = ({ evt, file }) => {
+    if (
+      file.status === 'edit' &&
+      (evt.type !== 'keydown' || [13, 32].indexOf(evt.which) >= 0)
+    ) {
+      if (evt) {
+        evt.stopPropagation();
+      }
+      const filteredArray = this.state.files.filter(item => item !== file);
+      this.setState({ files: filteredArray });
     }
-    const filteredArray = this.state.files.filter((file, i) => i !== index);
-    this.setState({ files: filteredArray });
   };
 
   clearFiles = () => {
@@ -121,12 +127,27 @@ class App extends React.Component {
           labelTitle="Upload"
           buttonLabel="Add files"
           name="file"
-          multiple
           files={this.state.files}
           onChange={this.handleChange}
-          onClick={this.handleClick}
-          {...props.FileUploaderV2()}
-        />
+          {...this.props}>
+          {this.state.files.map(file => {
+            const { name, status, iconDescription } = file;
+            return (
+              <FileUploadStatus
+                key={name}
+                name={name}
+                status={status}
+                iconDescription={iconDescription}
+                onKeyDown={evt => {
+                  this.handleEventOnUploadStatus({ evt, file });
+                }}
+                onClick={evt => {
+                  this.handleEventOnUploadStatus({ evt, file });
+                }}
+              />
+            );
+          })}
+        </FileUploaderV2>
         <Button
           kind="secondary"
           small
@@ -142,24 +163,10 @@ class App extends React.Component {
 storiesOf('FileUploaderV2', module)
   .addDecorator(withKnobs)
   .add(
-    'FileUploaderButton',
-    withInfo({
-      text:
-        'The FileUploaderButton can be used as a standalone component if you do not need the extra UI that comes with FileUploader. The FileUploaderButton is used in FileUploader.',
-    })(() => (
-      <FileUploaderButtonV2
-        labelText="Add files"
-        className="bob"
-        name="file"
-        onChange={() => console.log('hi')}
-        multiple
-        {...props.FileUploaderButtonV2()}
-      />
-    ))
-  )
-  .add(
     'FileUploader example application',
-    withInfo({ text: 'example application' })(() => <App />)
+    withInfo({ text: 'example application' })(() => (
+      <App {...props.FileUploaderV2()} />
+    ))
   )
   .add(
     'skeleton',
