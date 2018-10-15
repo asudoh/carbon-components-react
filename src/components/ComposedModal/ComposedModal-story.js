@@ -13,6 +13,7 @@ import Button from '../Button';
 const props = {
   composedModal: () => ({
     open: boolean('Open (open in <ComposedModal>)', true),
+    onClose: action('onClose'),
     onKeyDown: action('onKeyDown'),
   }),
   modalHeader: () => ({
