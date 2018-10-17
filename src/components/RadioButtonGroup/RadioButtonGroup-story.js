@@ -57,15 +57,36 @@ storiesOf('RadioButtonGroup', module)
           <RadioButtonGroup
             defaultSelected="default-selected"
             legend="Group Legend"
-            {...props.group()}>
-            <RadioButton value="standard" id="radio-1" {...radioProps} />
-            <RadioButton
-              value="default-selected"
-              id="radio-2"
-              {...radioProps}
-            />
-            <RadioButton value="disabled" id="radio-3" {...radioProps} />
-          </RadioButtonGroup>
+            {...props.group()}
+            renderRadioButtons={({ name, selected, onChange }) => (
+              <>
+                <RadioButton
+                  name={name}
+                  value="standard"
+                  id="radio-1"
+                  checked={selected === 'standard'}
+                  onChange={onChange}
+                  {...radioProps}
+                />
+                <RadioButton
+                  name={name}
+                  value="default-selected"
+                  id="radio-2"
+                  checked={selected === 'default-selected'}
+                  onChange={onChange}
+                  {...radioProps}
+                />
+                <RadioButton
+                  name={name}
+                  value="disabled"
+                  id="radio-3"
+                  checked={selected === 'disabled'}
+                  onChange={onChange}
+                  {...radioProps}
+                />
+              </>
+            )}
+          />
         </FormGroup>
       );
     })

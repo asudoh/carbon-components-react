@@ -94,12 +94,26 @@ export default class RadioButtonGroup extends React.Component {
   };
 
   render() {
-    const { disabled, className } = this.props;
+    const {
+      name,
+      disabled,
+      className,
+      renderRadioButtons: RadioButtons,
+    } = this.props;
+    const { selected } = this.state;
 
     return (
       <div className="bx--form-item">
         <div className={className} disabled={disabled}>
-          {this.getRadioButtons()}
+          {!RadioButtons ? (
+            this.getRadioButtons()
+          ) : (
+            <RadioButtons
+              name={name}
+              selected={selected}
+              onChange={this.handleChange}
+            />
+          )}
         </div>
       </div>
     );
