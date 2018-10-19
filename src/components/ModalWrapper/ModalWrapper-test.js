@@ -67,4 +67,23 @@ describe('ModalWrapper', () => {
     wrapper.find({ children: mockProps.primaryButtonText }).simulate('click');
     expect(wrapper.state('isOpen')).toBe(true);
   });
+
+  it('should call onClick upon user-initiated closing', () => {
+    const onClose = jest.fn();
+    const wrapper = mount(<ModalWrapper onClose={onClose} />);
+    wrapper.setState({ isOpen: true });
+    const button = wrapper.find('.bx--modal-close').first();
+    button.simulate('click');
+    expect(wrapper.state().isOpen).toEqual(false);
+    expect(onClose.mock.calls.length).toBe(1);
+  });
+
+  it('should provide a way to prevent upon user-initiated closing', () => {
+    const onClose = jest.fn(() => false);
+    const wrapper = mount(<ModalWrapper open onClose={onClose} />);
+    wrapper.setState({ isOpen: true });
+    const button = wrapper.find('.bx--modal-close').first();
+    button.simulate('click');
+    expect(wrapper.state().isOpen).toEqual(true);
+  });
 });

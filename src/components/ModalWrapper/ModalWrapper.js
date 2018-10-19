@@ -24,6 +24,12 @@ export default class ModalWrapper extends React.Component {
     disabled: PropTypes.bool,
     triggerButtonKind: ButtonTypes.buttonKind,
     shouldCloseAfterSubmit: PropTypes.bool,
+
+    /**
+     * Specify an optional handler for closing modal.
+     * Returning `false` here prevents closing modal.
+     */
+    onClose: PropTypes.func,
   };
 
   static defaultProps = {
@@ -45,16 +51,21 @@ export default class ModalWrapper extends React.Component {
     });
   };
 
-  handleClose = () => {
-    this.setState({ isOpen: false }, () => this.triggerButton.current.focus());
+  handleClose = evt => {
+    const { onClose } = this.props;
+    if (!onClose || onClose(evt) !== false) {
+      this.setState({ isOpen: false }, () =>
+        this.triggerButton.current.focus()
+      );
+    }
   };
 
-  handleOnRequestSubmit = () => {
+  handleOnRequestSubmit = evt => {
     const { handleSubmit, shouldCloseAfterSubmit } = this.props;
 
     if (handleSubmit()) {
       if (shouldCloseAfterSubmit) {
-        this.handleClose();
+        this.handleClose(evt);
       }
     }
   };
@@ -84,7 +95,7 @@ export default class ModalWrapper extends React.Component {
         role="presentation"
         onKeyDown={evt => {
           if (evt.which === 27) {
-            this.handleClose();
+            this.handleClose(evt);
             onKeyDown(evt);
           }
         }}>
