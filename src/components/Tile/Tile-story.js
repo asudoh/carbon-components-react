@@ -49,7 +49,7 @@ const props = {
   expandable: () => ({
     tabIndex: number('Tab index (tabIndex)', 0),
     expanded: boolean('Expanded (expanded)', false),
-    tileMaxHeight: number('Max height (tileMaxHeight)', 0),
+    tileMaxHeight: number('Max height (tileMaxHeight)'),
     tileCollapsedIconText: text(
       'Collapsed icon text (tileCollapsedIconText)',
       'Expand'

@@ -285,7 +285,6 @@ export class ExpandableTile extends Component {
   static defaultProps = {
     tabIndex: 0,
     expanded: false,
-    tileMaxHeight: '0',
     handleClick: () => {},
     tileCollapsedIconText: 'Expand',
     tileExpandedIconText: 'Collapse',
@@ -320,29 +319,42 @@ export class ExpandableTile extends Component {
         };
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
     if (this.refs[0]) {
       this.aboveTheFold = ReactDOM.findDOMNode(this.refs[0]); // eslint-disable-line
     }
-    const getStyle = window.getComputedStyle(this.tile, null);
-    this.setState({
-      tileMaxHeight: this.aboveTheFold.getBoundingClientRect().height,
-      tilePadding:
+    const getTilePadding = () => {
+      const getStyle = window.getComputedStyle(this.tile, null);
+      return (
         parseInt(getStyle.getPropertyValue('padding-top'), 10) +
-        parseInt(getStyle.getPropertyValue('padding-bottom'), 10),
-    });
-  };
-
-  componentDidUpdate = prevProps => {
-    if (prevProps.expanded !== this.props.expanded) this.setMaxHeight();
-  };
-
-  setMaxHeight = () =>
+        parseInt(getStyle.getPropertyValue('padding-bottom'), 10)
+      );
+    };
+    const {
+      tileMaxHeight = this.aboveTheFold.getBoundingClientRect().height,
+      tilePadding = getTilePadding(),
+    } = this.props;
     this.setState({
-      tileMaxHeight: this.state.expanded
+      tileMaxHeight,
+      tilePadding,
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.expanded !== this.props.expanded) this.setMaxHeight();
+  }
+
+  setMaxHeight = () => {
+    const { expanded } = this.state;
+    const {
+      tileMaxHeight = expanded
         ? this.tileContent.getBoundingClientRect().height
         : this.aboveTheFold.getBoundingClientRect().height,
+    } = this.props;
+    this.setState({
+      tileMaxHeight,
     });
+  };
 
   handleClick = evt => {
     this.setState(
@@ -364,10 +376,10 @@ export class ExpandableTile extends Component {
     const {
       tabIndex,
       className,
-      tileMaxHeight, // eslint-disable-line
-      tilePadding, // eslint-disable-line
+      tileMaxHeight: tileMaxHeightProp, // eslint-disable-line
+      tilePadding: tilePaddingProp, // eslint-disable-line
       handleClick, // eslint-disable-line
-      expanded, // eslint-disable-line
+      expanded: expandedProp, // eslint-disable-line
       tileCollapsedIconText, // eslint-disable-line
       tileExpandedIconText, // eslint-disable-line
       ...other
@@ -382,8 +394,9 @@ export class ExpandableTile extends Component {
       className
     );
 
+    const { tileMaxHeight = 0, tilePadding = 0, expanded } = this.state;
     const tileStyle = {
-      maxHeight: this.state.tileMaxHeight + this.state.tilePadding,
+      maxHeight: tileMaxHeight + tilePadding,
     };
     const content = this.getChildren().map((child, index) => {
       return React.cloneElement(child, { ref: index });
@@ -404,7 +417,7 @@ export class ExpandableTile extends Component {
           <Icon
             icon={iconChevronDown}
             description={
-              this.state.expanded ? tileExpandedIconText : tileCollapsedIconText
+              expanded ? tileExpandedIconText : tileCollapsedIconText
             }
           />
         </button>
