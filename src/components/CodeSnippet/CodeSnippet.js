@@ -18,6 +18,22 @@ export default class CodeSnippet extends Component {
     className: PropTypes.string,
 
     /**
+     * Specify the optional list of CSS class names.
+     */
+    classes: PropTypes.shape({
+      container: PropTypes.string,
+      single: PropTypes.string,
+      multi: PropTypes.string,
+      inline: PropTypes.string,
+      expand: PropTypes.string,
+      light: PropTypes.string,
+      moreLessBtn: PropTypes.string,
+      moreLessBtnText: PropTypes.string,
+      moreLessBtnIcon: PropTypes.string,
+      codeContainer: PropTypes.string,
+    }),
+
+    /**
      * Provide the content of your CodeSnippet as a string
      */
     children: PropTypes.string,
@@ -70,6 +86,18 @@ export default class CodeSnippet extends Component {
 
   static defaultProps = {
     type: 'single',
+    classes: {
+      container: 'bx--snippet',
+      single: 'bx--snippet--single',
+      multi: 'bx--snippet--multi',
+      inline: 'bx--snippet--inline',
+      expand: 'bx--snippet--expand',
+      light: 'bx--snippet--light',
+      moreLessBtn: 'bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand',
+      moreLessBtnText: 'bx--snippet-btn--text',
+      moreLessBtnIcon: 'bx--icon-chevron--down',
+      codeContainer: 'bx--snippet-container',
+    },
     showMoreText: 'Show more',
     showLessText: 'Show less',
   };
@@ -102,6 +130,7 @@ export default class CodeSnippet extends Component {
   render() {
     const {
       className,
+      classes,
       type,
       children,
       feedback,
@@ -116,12 +145,12 @@ export default class CodeSnippet extends Component {
     } = this.props;
 
     const codeSnippetClasses = classNames(className, {
-      'bx--snippet': true,
-      'bx--snippet--single': type === 'single',
-      'bx--snippet--multi': type === 'multi',
-      'bx--snippet--inline': type === 'inline',
-      'bx--snippet--expand': this.state.expandedCode,
-      'bx--snippet--light': light,
+      [classes.container]: true,
+      [classes.single]: type === 'single',
+      [classes.multi]: type === 'multi',
+      [classes.inline]: type === 'inline',
+      [classes.expand]: this.state.expandedCode,
+      [classes.light]: light,
     });
 
     const expandCodeBtnText = this.state.expandedCode
@@ -130,16 +159,16 @@ export default class CodeSnippet extends Component {
 
     const moreLessBtn = (
       <button
-        className="bx--btn bx--btn--ghost bx--btn--sm bx--snippet-btn--expand"
+        className={classes.moreLessBtn}
         type="button"
         onClick={this.expandCode}>
-        <span className="bx--snippet-btn--text">{expandCodeBtnText}</span>
+        <span className={classes.moreLessBtnText}>{expandCodeBtnText}</span>
         <Icon
           aria-hidden="true"
           alt={expandCodeBtnText}
           name="chevron--down"
           description={expandCodeBtnText}
-          className="bx--icon-chevron--down"
+          className={classes.moreLessBtnIcon}
         />
       </button>
     );
@@ -148,7 +177,7 @@ export default class CodeSnippet extends Component {
       <div
         role="textbox"
         tabIndex={0}
-        className="bx--snippet-container"
+        className={classes.codeContainer}
         aria-label={ariaLabel ? ariaLabel : 'code-snippet'}>
         <code>
           <pre

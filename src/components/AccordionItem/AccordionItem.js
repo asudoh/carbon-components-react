@@ -21,6 +21,18 @@ export default class AccordionItem extends Component {
     className: PropTypes.string,
 
     /**
+     * Specify the optional list of CSS class names.
+     */
+    classes: PropTypes.shape({
+      container: PropTypes.string,
+      containerActive: PropTypes.string,
+      heading: PropTypes.string,
+      arrow: PropTypes.string,
+      title: PropTypes.string,
+      content: PropTypes.string,
+    }),
+
+    /**
      * The accordion title.
      */
     title: PropTypes.node,
@@ -53,6 +65,14 @@ export default class AccordionItem extends Component {
   };
 
   static defaultProps = {
+    classes: {
+      container: 'bx--accordion__item',
+      containerActive: 'bx--accordion__item--active',
+      heading: 'bx--accordion__heading',
+      arrow: 'bx--accordion__arrow',
+      title: 'bx--accordion__title',
+      content: 'bx--accordion__content',
+    },
     title: 'title',
     renderExpando: defaultRenderExpando,
     iconDescription: 'Expand/Collapse',
@@ -93,6 +113,7 @@ export default class AccordionItem extends Component {
   render() {
     const {
       className,
+      classes,
       title,
       renderExpando: Expando,
       iconDescription,
@@ -104,9 +125,9 @@ export default class AccordionItem extends Component {
 
     const classNames = classnames(
       {
-        'bx--accordion__item--active': this.state.open,
+        [classes.containerActive]: this.state.open,
       },
-      'bx--accordion__item',
+      classes.container,
       className
     );
     return (
@@ -118,17 +139,17 @@ export default class AccordionItem extends Component {
         {...other}>
         <Expando
           type="button"
-          className="bx--accordion__heading"
+          className={classes.heading}
           role="tab"
           onClick={this.handleHeadingClick}>
           <Icon
-            className="bx--accordion__arrow"
+            className={classes.arrow}
             icon={iconChevronRight}
             description={iconDescription}
           />
-          <div className="bx--accordion__title">{title}</div>
+          <div className={classes.title}>{title}</div>
         </Expando>
-        <div className="bx--accordion__content">{children}</div>
+        <div className={classes.content}>{children}</div>
       </li>
     );
   }

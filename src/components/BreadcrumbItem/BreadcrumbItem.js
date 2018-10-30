@@ -3,21 +3,21 @@ import React from 'react';
 import classnames from 'classnames';
 import Link from '../Link';
 
-const newChild = (children, href) => {
+const newChild = (children, href, className) => {
   if (typeof children === 'string' && !(href === undefined)) {
     return <Link href={href}>{children}</Link>;
   } else {
     return React.cloneElement(React.Children.only(children), {
-      className: 'bx--link',
+      className,
     });
   }
 };
 
-const BreadcrumbItem = ({ children, className, href, ...other }) => {
-  const classNames = classnames('bx--breadcrumb-item', className);
+const BreadcrumbItem = ({ children, className, classes, href, ...other }) => {
+  const classNames = classnames(classes.container, className);
   return (
     <div className={classNames} {...other}>
-      {newChild(children, href)}
+      {newChild(children, href, classes.link)}
     </div>
   );
 };
@@ -34,9 +34,24 @@ BreadcrumbItem.propTypes = {
   className: PropTypes.string,
 
   /**
+   * Specify the optional list of CSS class names.
+   */
+  classes: PropTypes.shape({
+    container: PropTypes.string,
+    link: PropTypes.string,
+  }),
+
+  /**
    * Optional string representing the link location for the BreadcrumbItem
    */
   href: PropTypes.string,
+};
+
+BreadcrumbItem.defaultProps = {
+  classes: {
+    container: 'bx--breadcrumb-item',
+    link: 'bx--link',
+  },
 };
 
 export default BreadcrumbItem;

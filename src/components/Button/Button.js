@@ -7,6 +7,7 @@ import { ButtonTypes } from '../../prop-types/types';
 const Button = ({
   children,
   className,
+  classes,
   disabled,
   small,
   kind,
@@ -18,14 +19,14 @@ const Button = ({
   ...other
 }) => {
   const buttonClasses = classNames(className, {
-    'bx--btn': true,
-    'bx--btn--sm': small,
-    'bx--btn--primary': kind === 'primary',
-    'bx--btn--danger': kind === 'danger',
-    'bx--btn--secondary': kind === 'secondary',
-    'bx--btn--ghost': kind === 'ghost',
-    'bx--btn--danger--primary': kind === 'danger--primary',
-    'bx--btn--tertiary': kind === 'tertiary',
+    [classes.container]: true,
+    [classes.small]: small,
+    [classes.primary]: kind === 'primary',
+    [classes.danger]: kind === 'danger',
+    [classes.secondary]: kind === 'secondary',
+    [classes.ghost]: kind === 'ghost',
+    [classes.dangerPrimary]: kind === 'danger--primary',
+    [classes.tertiary]: kind === 'tertiary',
   });
 
   const commonProps = {
@@ -38,7 +39,7 @@ const Button = ({
       icon={Object(icon) === icon ? icon : undefined}
       name={Object(icon) !== icon ? icon : undefined}
       description={iconDescription}
-      className="bx--btn__icon"
+      className={classes.icon}
     />
   ) : null;
 
@@ -79,6 +80,21 @@ Button.propTypes = {
    * Specify an optional className to be added to your Button
    */
   className: PropTypes.string,
+
+  /**
+   * Specify the optional list of CSS class names.
+   */
+  classes: PropTypes.shape({
+    container: PropTypes.string,
+    small: PropTypes.string,
+    primary: PropTypes.string,
+    danger: PropTypes.string,
+    secondary: PropTypes.string,
+    ghost: PropTypes.string,
+    dangerPrimary: PropTypes.string,
+    tertiary: PropTypes.string,
+    icon: PropTypes.string,
+  }),
 
   /**
    * Specify whether the Button should be disabled, or not
@@ -144,6 +160,17 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  classes: {
+    container: 'bx--btn',
+    small: 'bx--btn--sm',
+    primary: 'bx--btn--primary',
+    danger: 'bx--btn--danger',
+    secondary: 'bx--btn--secondary',
+    ghost: 'bx--btn--ghost',
+    dangerPrimary: 'bx--btn--danger--primary',
+    tertiary: 'bx--btn--tertiary',
+    icon: 'bx--btn__icon',
+  },
   iconDescription: 'Provide icon description if icon is used',
   tabIndex: 0,
   type: 'button',

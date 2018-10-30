@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 const Checkbox = ({
+  classes,
   className,
   id,
   labelText,
@@ -14,15 +15,11 @@ const Checkbox = ({
   ...other
 }) => {
   let input;
-  const labelClasses = classNames('bx--checkbox-label', className);
+  const labelClasses = classNames(classes.label, className);
   const innerLabelClasses = classNames({
-    'bx--visually-hidden': hideLabel,
+    [classes.innerLabelHidden]: hideLabel,
   });
-  const wrapperClasses = classNames(
-    'bx--form-item',
-    'bx--checkbox-wrapper',
-    wrapperClassName
-  );
+  const wrapperClasses = classNames(classes.wrapper, wrapperClassName);
 
   return (
     <div className={wrapperClasses}>
@@ -32,7 +29,7 @@ const Checkbox = ({
         onChange={evt => {
           onChange(input.checked, id, evt);
         }}
-        className="bx--checkbox"
+        className={classes.checkbox}
         id={id}
         ref={el => {
           input = el;
@@ -68,6 +65,16 @@ Checkbox.propTypes = {
    * Specify an optional className to be applied to the <label> node
    */
   className: PropTypes.string,
+
+  /**
+   * Specify the optional list of CSS class names.
+   */
+  classes: {
+    checkbox: 'bx--checkbox',
+    label: 'bx--checkbox-label',
+    wrapper: 'bx--checkbox-wrapper bx--form-item',
+    innerLabelHidden: 'bx--visually-hidden',
+  },
 
   /**
    * Specify whether the Checkbox should be disabled
@@ -108,6 +115,12 @@ Checkbox.propTypes = {
 };
 
 Checkbox.defaultProps = {
+  classes: {
+    checkbox: 'bx--checkbox',
+    label: 'bx--checkbox-label',
+    wrapper: 'bx--checkbox-wrapper bx--form-item',
+    innerLabelHidden: 'bx--visually-hidden',
+  },
   onChange: () => {},
   indeterminate: false,
 };

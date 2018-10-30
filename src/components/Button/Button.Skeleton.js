@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 
-const ButtonSkeleton = ({ small, href }) => {
+const ButtonSkeleton = ({ classes, small, href }) => {
   const buttonClasses = classNames({
-    'bx--skeleton': true,
-    'bx--btn': true,
-    'bx--btn--sm': small,
+    [classes.skeleton]: true,
+    [classes.container]: true,
+    [classes.small]: small,
   });
 
   const commonProps = {
@@ -21,11 +21,24 @@ const ButtonSkeleton = ({ small, href }) => {
 };
 
 ButtonSkeleton.propTypes = {
+  /**
+   * Specify the optional list of CSS class names.
+   */
+  classes: PropTypes.shape({
+    container: PropTypes.string,
+    small: PropTypes.string,
+    skeleton: PropTypes.string,
+  }),
   small: PropTypes.bool,
   href: PropTypes.string,
 };
 
 ButtonSkeleton.defaultProps = {
+  classes: {
+    container: 'bx--btn',
+    small: 'bx--btn--sm',
+    skeleton: 'bx--skeleton',
+  },
   small: false,
 };
 
