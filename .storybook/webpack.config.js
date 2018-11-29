@@ -39,6 +39,7 @@ const styleLoaders = [
     options: {
       includePaths: [path.resolve(__dirname, '..', 'node_modules')],
       data: `
+        $prefix: 'ibm';
         $feature-flags: (
           components-x: ${useExperimentalFeatures},
           grid: ${useExperimentalFeatures},
@@ -64,17 +65,28 @@ module.exports = (baseConfig, env, defaultConfig) => {
     ],
   };
 
-  defaultConfig.module.rules.push({
-    test: /(\/|\\)FeatureFlags\.js$/,
-    loader: 'string-replace-loader',
-    options: {
-      multiple: Object.keys(replaceTable).map(key => ({
-        search: `export\\s+const\\s+${key}\\s*=\\s*false`,
-        replace: `export const ${key} = ${replaceTable[key]}`,
-        flags: 'i',
-      })),
+  defaultConfig.module.rules.push(
+    {
+      test: /(\/|\\)FeatureFlags\.js$/,
+      loader: 'string-replace-loader',
+      options: {
+        multiple: Object.keys(replaceTable).map(key => ({
+          search: `export\\s+const\\s+${key}\\s*=\\s*false`,
+          replace: `export const ${key} = ${replaceTable[key]}`,
+          flags: 'i',
+        })),
+      },
     },
-  });
+    {
+      test: /(\/|\\)settings\.js$/,
+      loader: 'string-replace-loader',
+      options: {
+        search: `prefix:\\s*'bx'`,
+        replace: `prefix: 'ibm'`,
+        flags: 'i',
+      },
+    }
+  );
 
   defaultConfig.module.rules.push({
     test: /-story\.jsx?$/,

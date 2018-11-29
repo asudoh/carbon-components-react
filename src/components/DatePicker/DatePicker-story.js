@@ -23,6 +23,7 @@ const props = {
   datePicker: () => ({
     id: 'date-picker',
     light: boolean('Light variant (light in <DatePicker>)', false),
+    value: text('Value:', ''),
     onChange: datePickerOnChangeActions('onPickerChange'),
   }),
   datePickerInput: () => ({

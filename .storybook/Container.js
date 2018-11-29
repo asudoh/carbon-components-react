@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { settings } from 'carbon-components';
 import './polyfills';
 import './_container.scss';
+
+const { prefix } = settings;
 
 export default class Container extends Component {
   render() {
@@ -22,7 +25,7 @@ export default class Container extends Component {
         <input
           aria-label="input-text-offleft"
           type="text"
-          className="bx--visually-hidden"
+          className={`${prefix}--visually-hidden`}
         />
       </React.StrictMode>
     );
