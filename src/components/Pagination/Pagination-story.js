@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 
 import {
   withKnobs,
@@ -36,7 +37,7 @@ const props = () => ({
   onChange: action('onChange'),
 });
 
-storiesOf('Pagination', module)
+const story = storiesOf('Pagination', module)
   .addDecorator(withKnobs)
   .addDecorator(story => <div style={{ width: '800px' }}>{story()}</div>)
   .add('v2', () => <PaginationV2 {...props()} />, {
@@ -45,27 +46,31 @@ storiesOf('Pagination', module)
             V2 version of the Pagination
           `,
     },
-  })
-  .add('v1', () => <Pagination {...props()} />, {
-    info: {
-      text: `
+  });
+
+if (!breakingChangesX) {
+  story
+    .add('v1', () => <Pagination {...props()} />, {
+      info: {
+        text: `
             The pagination component is used to paginate through items.
           `,
-    },
-  })
-  .add(
-    'multipe pagination components',
-    () => {
-      return (
-        <div>
-          <Pagination {...props()} />
-          <Pagination {...props()} />
-        </div>
-      );
-    },
-    {
-      info: {
-        text: `Showcasing unique ids for each pagination component`,
       },
-    }
-  );
+    })
+    .add(
+      'multipe pagination components',
+      () => {
+        return (
+          <div>
+            <Pagination {...props()} />
+            <Pagination {...props()} />
+          </div>
+        );
+      },
+      {
+        info: {
+          text: `Showcasing unique ids for each pagination component`,
+        },
+      }
+    );
+}

@@ -4,6 +4,7 @@ import { iconInfoGlyph } from 'carbon-icons';
 import classNames from 'classnames';
 import warning from 'warning';
 import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 import Icon from '../Icon';
 
 const { prefix } = settings;
@@ -123,4 +124,4 @@ TooltipSimple.defaultProps = {
   text: 'Provide text',
 };
 
-export default TooltipSimple;
+export default (!breakingChangesX ? TooltipSimple : null);

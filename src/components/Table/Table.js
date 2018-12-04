@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import warning from 'warning';
 import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -58,4 +59,4 @@ Table.propTypes = {
   containerClassName: PropTypes.string,
 };
 
-export default Table;
+export default (!breakingChangesX ? Table : null);

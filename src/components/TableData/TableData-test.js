@@ -1,8 +1,9 @@
 import React from 'react';
 import TableData from '../TableData';
+import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { mount, shallow } from 'enzyme';
 
-describe('TableData', () => {
+describeBreakingChangesXFeatures('TableData', () => {
   describe('Renders as expected', () => {
     const td = shallow(<TableData>Content</TableData>);
 

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
 
@@ -29,4 +30,4 @@ TableHead.propTypes = {
   className: PropTypes.string,
 };
 
-export default TableHead;
+export default (!breakingChangesX ? TableHead : null);

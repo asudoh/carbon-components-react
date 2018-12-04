@@ -1,8 +1,9 @@
 import React from 'react';
 import Table from '../Table';
 import { shallow } from 'enzyme';
+import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 
-describe('Table', () => {
+describeBreakingChangesXFeatures('Table', () => {
   describe('Renders as expected', () => {
     const tableContainer = shallow(
       <Table>

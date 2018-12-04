@@ -3,6 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { iconCaretDown, iconCaretUp } from 'carbon-icons';
 import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 import Icon from '../Icon';
 
 const { prefix } = settings;
@@ -87,4 +88,4 @@ TableHeader.defaultProps = {
   iconDescriptionDescending: 'descending sort',
 };
 
-export default TableHeader;
+export default (!breakingChangesX ? TableHeader : null);

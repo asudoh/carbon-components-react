@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import warning from 'warning';
 import { iconCaretDown } from 'carbon-icons';
 import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 import ClickListener from '../../internal/ClickListener';
 import Icon from '../Icon';
 
@@ -11,7 +12,7 @@ const { prefix } = settings;
 
 let didWarnAboutDeprecation = false;
 
-export default class Dropdown extends PureComponent {
+class Dropdown extends PureComponent {
   static propTypes = {
     /**
      * Specify a label to be read by screen readers on the container node
@@ -260,3 +261,5 @@ export default class Dropdown extends PureComponent {
     return dropdown;
   }
 }
+
+export default (!breakingChangesX ? Dropdown : null);
