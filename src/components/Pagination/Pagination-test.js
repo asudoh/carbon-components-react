@@ -4,7 +4,6 @@ import Icon from '../Icon';
 import Pagination from '../Pagination';
 import Select from '../Select';
 import SelectItem from '../SelectItem';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { shallow, mount } from 'enzyme';
 
 jest.useFakeTimers();

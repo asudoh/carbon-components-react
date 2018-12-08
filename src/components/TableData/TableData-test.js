@@ -1,6 +1,5 @@
 import React from 'react';
 import TableData from '../TableData';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { mount, shallow } from 'enzyme';
 
 describeBreakingChangesXFeatures('TableData', () => {

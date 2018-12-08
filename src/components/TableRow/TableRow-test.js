@@ -1,6 +1,5 @@
 import React from 'react';
 import TableRow from '../TableRow';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { shallow } from 'enzyme';
 
 describeBreakingChangesXFeatures('TableRow', () => {

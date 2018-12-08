@@ -1,6 +1,5 @@
 import React from 'react';
 import TableHead from '../TableHead';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { shallow } from 'enzyme';
 
 describeBreakingChangesXFeatures('TableHead', () => {

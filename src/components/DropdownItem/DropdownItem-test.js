@@ -1,6 +1,5 @@
 import React from 'react';
 import DropdownItem from '../DropdownItem';
-import describeBreakingChangesXFeatures from '../../tools/describeBreakingChangesXFeatures';
 import { mount } from 'enzyme';
 
 describeBreakingChangesXFeatures('DropdownItem', () => {
