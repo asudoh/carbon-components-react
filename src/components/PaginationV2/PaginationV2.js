@@ -27,7 +27,7 @@ export default class PaginationV2 extends Component {
     this.uniqueId = ++instanceId;
   }
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The description for the backward icon.
      */
@@ -127,7 +127,7 @@ export default class PaginationV2 extends Component {
     pageInputDisabled: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     backwardText: 'Backward',
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
     forwardText: 'Forward',

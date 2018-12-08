@@ -6,7 +6,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default class Tab extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify an optional className to be added to your Tab
      */
@@ -79,7 +79,7 @@ export default class Tab extends React.Component {
     renderAnchor: PropTypes.func,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     role: 'presentation',
     label: 'provide a label',
     tabIndex: 0,

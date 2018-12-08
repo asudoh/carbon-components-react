@@ -7,7 +7,7 @@ import Icon from '../Icon';
 const { prefix } = settings;
 
 export default class DatePickerInput extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify an id that unique identifies the <input>
      */
@@ -19,7 +19,7 @@ export default class DatePickerInput extends Component {
     iconDescription: PropTypes.string,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     pattern: '\\d{1,2}\\/\\d{1,2}\\/\\d{4}',
     type: 'text',
     disabled: false,

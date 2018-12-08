@@ -7,7 +7,7 @@ import uid from '../../tools/uniqueId';
 const { prefix } = settings;
 
 export default class RadioButton extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify whether the <RadioButton> is currently checked
      */
@@ -56,7 +56,7 @@ export default class RadioButton extends React.Component {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     onChange: () => {},
   };
 

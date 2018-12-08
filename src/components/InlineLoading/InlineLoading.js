@@ -7,7 +7,7 @@ import Loading from '../Loading';
 const { prefix } = settings;
 
 export default class InlineLoading extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify a custom className to be applied to the container node
      */
@@ -35,7 +35,7 @@ export default class InlineLoading extends React.Component {
     successDelay: PropTypes.number,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     success: false,
     successDelay: 1500,
   };

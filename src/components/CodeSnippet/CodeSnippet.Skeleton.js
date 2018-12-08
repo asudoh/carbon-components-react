@@ -6,7 +6,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default class CodeSnippetSkeleton extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The type of code snippet
      * can be single or multi
@@ -19,7 +19,7 @@ export default class CodeSnippetSkeleton extends Component {
     className: PropTypes.string,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     type: 'single',
   };
 

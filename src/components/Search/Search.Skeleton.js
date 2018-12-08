@@ -6,14 +6,14 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default class SearchSkeleton extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify whether the Search should be a small variant
      */
     small: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     small: false,
   };
 

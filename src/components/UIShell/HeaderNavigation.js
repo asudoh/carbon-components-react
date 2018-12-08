@@ -8,7 +8,7 @@ import { keys, match, matches, getCharacterFor } from '../../tools/key';
 const { prefix } = settings;
 
 export default class HeaderNavigation extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Required props for accessibility label on the underlying menu
      */

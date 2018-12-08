@@ -9,7 +9,7 @@ import ClickListener from '../../internal/ClickListener';
 const { prefix } = settings;
 
 export default class ToolbarSearch extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The child nodes.
      */
@@ -51,7 +51,7 @@ export default class ToolbarSearch extends Component {
     id: PropTypes.string,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     type: 'search',
     id: 'search__input',
     labelText: '',

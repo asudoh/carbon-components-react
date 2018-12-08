@@ -8,7 +8,7 @@ import Icon from '../Icon';
 const { prefix } = settings;
 
 export default class CopyButton extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify an optional className to be applied to the underlying <button>
      */
@@ -38,7 +38,7 @@ export default class CopyButton extends Component {
     onClick: PropTypes.func,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     iconDescription: 'Copy to clipboard',
     feedback: 'Copied!',
     feedbackTimeout: 2000,

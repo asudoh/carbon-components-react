@@ -6,7 +6,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default class Copy extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Pass in content to be rendred in the underlying <button>
      */
@@ -35,7 +35,7 @@ export default class Copy extends Component {
     onClick: PropTypes.func,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     feedback: 'Copied!',
     feedbackTimeout: 2000,
     onClick: () => {},

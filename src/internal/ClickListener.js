@@ -6,7 +6,7 @@ import React from 'react';
  * given `children` element.
  */
 export default class ClickListener extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     children: PropTypes.element.isRequired,
     onClickOutside: PropTypes.func.isRequired,
   };

@@ -5,7 +5,7 @@ import Button from '../Button';
 import { ButtonTypes } from '../../prop-types/types';
 
 export default class ModalWrapper extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     status: PropTypes.string,
     handleOpen: PropTypes.func,
     children: PropTypes.node,
@@ -26,7 +26,7 @@ export default class ModalWrapper extends React.Component {
     shouldCloseAfterSubmit: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     primaryButtonText: 'Save',
     secondaryButtonText: 'Cancel',
     triggerButtonKind: 'primary',

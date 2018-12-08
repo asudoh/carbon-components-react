@@ -109,7 +109,7 @@ const getFloatingPosition = ({
  * Useful when the container of the triggering element cannot have `overflow:visible` style, etc.
  */
 class FloatingMenu extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Contents to put into the floating menu.
      */
@@ -167,7 +167,7 @@ class FloatingMenu extends React.Component {
     onPlace: PropTypes.func,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     menuPosition: {},
     menuOffset: {},
     menuDirection: DIRECTION_BOTTOM,

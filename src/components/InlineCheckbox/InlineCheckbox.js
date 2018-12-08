@@ -5,7 +5,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default class InlineCheckbox extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify the label for the control
      */

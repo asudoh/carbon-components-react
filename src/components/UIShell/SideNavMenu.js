@@ -8,7 +8,7 @@ import SideNavIcon from './SideNavIcon';
 const { prefix } = settings;
 
 export class SideNavMenu extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Provide an optional class to be applied to the containing node
      */
@@ -43,7 +43,7 @@ export class SideNavMenu extends React.Component {
     defaultExpanded: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     defaultExpanded: false,
     isActive: false,
   };

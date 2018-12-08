@@ -9,7 +9,7 @@ const { prefix } = settings;
 export default class ContentSwitcher extends React.Component {
   state = {};
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Pass in Switch components to be rendered in the ContentSwitcher
      */
@@ -32,7 +32,7 @@ export default class ContentSwitcher extends React.Component {
     selectedIndex: PropTypes.number,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     selectedIndex: 0,
   };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class WithState extends React.PureComponent {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     initialState: PropTypes.object,
   };
 

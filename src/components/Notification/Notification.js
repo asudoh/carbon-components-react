@@ -16,7 +16,7 @@ import a11yIconWarningSolid from './a11yIconWarningSolid';
 const { prefix } = settings;
 
 export class NotificationButton extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify an optional className to be applied to the notification button
      */
@@ -60,7 +60,7 @@ export class NotificationButton extends Component {
     notificationType: PropTypes.oneOf(['toast', 'inline']),
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     ariaLabel: 'close notificaion',
     notificationType: 'toast',
     type: 'button',
@@ -111,7 +111,7 @@ export class NotificationButton extends Component {
 }
 
 export class NotificationTextDetails extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify the title
      */
@@ -133,7 +133,7 @@ export class NotificationTextDetails extends Component {
     notificationType: PropTypes.oneOf(['toast', 'inline']),
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     title: 'title',
     subtitle: 'subtitle',
     caption: 'caption',
@@ -172,7 +172,7 @@ export class NotificationTextDetails extends Component {
 }
 
 export class ToastNotification extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     children: PropTypes.node,
 
     /**
@@ -233,7 +233,7 @@ export class ToastNotification extends Component {
     timeout: PropTypes.number,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     kind: 'error',
     title: 'provide a title',
     subtitle: 'provide a subtitle',
@@ -335,7 +335,7 @@ export class ToastNotification extends Component {
 }
 
 export class InlineNotification extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     children: PropTypes.node,
 
     /**
@@ -386,7 +386,7 @@ export class InlineNotification extends Component {
     hideCloseButton: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     role: 'alert',
     notificationType: 'inline',
     iconDescription: 'closes notification',
@@ -478,7 +478,7 @@ export class InlineNotification extends Component {
 // Deprecated
 
 export default class Notification extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     children: PropTypes.node,
 
     /**
@@ -522,7 +522,7 @@ export default class Notification extends Component {
     hideCloseButton: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     onCloseButtonClick: () => {},
     iconDescription: 'closes notification',
     title: 'Provide a title',

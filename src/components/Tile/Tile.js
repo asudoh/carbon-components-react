@@ -9,7 +9,7 @@ import Icon from '../Icon';
 const { prefix } = settings;
 
 export class Tile extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The child nodes.
      */
@@ -36,7 +36,7 @@ export class Tile extends Component {
 export class ClickableTile extends Component {
   state = {};
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The child nodes.
      */
@@ -58,7 +58,7 @@ export class ClickableTile extends Component {
     rel: PropTypes.string,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     clicked: false,
     handleClick: () => {},
     handleKeyDown: () => {},
@@ -138,7 +138,7 @@ export class SelectableTile extends Component {
     selected: this.props.selected,
   };
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The child nodes.
      */
@@ -180,7 +180,7 @@ export class SelectableTile extends Component {
     iconDescription: PropTypes.string,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     value: 'value',
     title: 'title',
     iconDescription: 'Tile checkmark',
@@ -287,7 +287,7 @@ export class SelectableTile extends Component {
 export class ExpandableTile extends Component {
   state = {};
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The child nodes.
      */
@@ -319,7 +319,7 @@ export class ExpandableTile extends Component {
     tileExpandedIconText: PropTypes.string,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     tabIndex: 0,
     expanded: false,
     tileMaxHeight: '0',
@@ -458,7 +458,7 @@ export class ExpandableTile extends Component {
 }
 
 export class TileAboveTheFoldContent extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The child nodes.
      */
@@ -477,7 +477,7 @@ export class TileAboveTheFoldContent extends Component {
 }
 
 export class TileBelowTheFoldContent extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The child nodes.
      */

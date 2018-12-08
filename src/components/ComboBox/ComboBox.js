@@ -43,7 +43,7 @@ const findHighlightedIndex = ({ items, itemToString }, inputValue) => {
 };
 
 export default class ComboBox extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * An optional className to add to the container node
      */
@@ -135,7 +135,7 @@ export default class ComboBox extends React.Component {
     light: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     disabled: false,
     itemToString: defaultItemToString,
     shouldFilterItem: defaultShouldFilterItem,

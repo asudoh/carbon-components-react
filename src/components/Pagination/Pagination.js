@@ -17,7 +17,7 @@ const { prefix } = settings;
 let didWarnAboutDeprecation = false;
 
 class Pagination extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The description for the backward icon.
      */
@@ -130,7 +130,7 @@ class Pagination extends Component {
     defaultItemText: PropTypes.func,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     backwardText: 'Backward',
     itemRangeText: (min, max, total) => `${min}-${max} of ${total} items`,
     forwardText: 'Forward',

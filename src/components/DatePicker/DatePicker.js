@@ -23,7 +23,7 @@ l10n.en.weekdays.shorthand.forEach((day, index) => {
 const forEach = Array.prototype.forEach;
 
 export default class DatePicker extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The child nodes.
      */
@@ -208,7 +208,7 @@ export default class DatePicker extends Component {
     maxDate: PropTypes.string,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     short: false,
     light: false,
     dateFormat: 'm/d/Y',

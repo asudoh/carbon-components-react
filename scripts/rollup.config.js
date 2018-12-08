@@ -81,6 +81,11 @@ module.exports = {
     babel({
       exclude: ['node_modules/**'], // only transpile our source code
     }),
+    babel({
+      exclude: ['node_modules/**'], // only transpile our source code
+      plugins: [require('./babel-plugin-pure-assignment')], // eslint-disable-line global-require
+      babelrc: false,
+    }),
     replace({
       'process.env.NODE_ENV': JSON.stringify(env),
     }),

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 
 export default class Selection extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     initialSelectedItems: PropTypes.array.isRequired,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     initialSelectedItems: [],
   };
 

@@ -129,7 +129,7 @@ export const getMenuOffset = (menuBody, direction) => {
 export default class OverflowMenu extends Component {
   state = {};
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * `true` if the menu should be open.
      */
@@ -254,7 +254,7 @@ export default class OverflowMenu extends Component {
     onOpen: PropTypes.func,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     ariaLabel: 'list of options',
     iconDescription: 'open and close list of options',
     open: false,

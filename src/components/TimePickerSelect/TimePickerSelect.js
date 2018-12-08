@@ -8,7 +8,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default class TimePickerSelect extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Provide the contents of your TimePickerSelect
      */
@@ -56,7 +56,7 @@ export default class TimePickerSelect extends Component {
     labelText: PropTypes.node.isRequired,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     disabled: false,
     inline: true,
     iconDescription: 'open list of options',

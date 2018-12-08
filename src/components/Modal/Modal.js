@@ -15,7 +15,7 @@ const matchesFuncName =
   )[0];
 
 export default class Modal extends Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Provide the contents of your Modal
      */
@@ -119,7 +119,7 @@ export default class Modal extends Component {
     selectorPrimaryFocus: PropTypes.string,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     onRequestClose: () => {},
     onRequestSubmit: () => {},
     primaryButtonDisabled: false,

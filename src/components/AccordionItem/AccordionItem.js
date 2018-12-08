@@ -12,7 +12,7 @@ const defaultRenderExpando = props => <button {...props} />;
 export default class AccordionItem extends Component {
   state = {};
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Provide the contents of your AccordionItem
      */
@@ -55,7 +55,7 @@ export default class AccordionItem extends Component {
     onHeadingClick: PropTypes.func,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     title: 'title',
     renderExpando: defaultRenderExpando,
     iconDescription: 'Expand/Collapse',

@@ -42,7 +42,7 @@ const translateWithId = id => defaultTranslations[id];
  * consumer.
  */
 export default class DataTable extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * The `rows` prop is where you provide us with a list of all the rows that
      * you want to render in the table. The only hard requirement is that this
@@ -102,7 +102,7 @@ export default class DataTable extends React.Component {
     shouldShowBorder: PropTypes.bool,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     sortRow: defaultSortRow,
     filterRows: defaultFilterRows,
     locale: 'en',

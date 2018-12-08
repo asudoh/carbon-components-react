@@ -9,7 +9,7 @@ import TabContent from '../TabContent';
 const { prefix } = settings;
 
 export default class Tabs extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Specify the text to be read by screen-readers when visiting the <Tabs>
      * component
@@ -75,7 +75,7 @@ export default class Tabs extends React.Component {
     iconDescription: PropTypes.string.isRequired,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     iconDescription: 'show menu options',
     role: 'navigation',
     triggerHref: '#',

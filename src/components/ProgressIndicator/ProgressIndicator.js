@@ -80,7 +80,7 @@ ProgressStep.propTypes = {
 export class ProgressIndicator extends Component {
   state = {};
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Provide <ProgressStep> components to be rendered in the
      * <ProgressIndicator>
@@ -98,7 +98,7 @@ export class ProgressIndicator extends Component {
     currentIndex: PropTypes.number,
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     currentIndex: 0,
   };
 

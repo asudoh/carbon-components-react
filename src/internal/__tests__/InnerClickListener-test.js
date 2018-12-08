@@ -12,10 +12,10 @@ describe('InnerClickListener', () => {
     onClickOutside = jest.fn();
     handleRefSpy = jest.spyOn(InnerClickListener.prototype, 'handleRef');
     InnerChild = class InnerChild extends React.Component {
-      static propTypes = {
+      static propTypes /*#__PURE__*/ = {
         innerRef: PropTypes.func.isRequired,
       };
-      static defaultProps = {
+      static defaultProps /*#__PURE__*/ = {
         innerRef: () => {},
       };
       render() {

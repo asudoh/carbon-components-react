@@ -15,7 +15,7 @@ const { prefix } = settings;
  * help manage focus state of its children.
  */
 class HeaderMenu extends React.Component {
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Required props for the accessibility label of the menu
      */

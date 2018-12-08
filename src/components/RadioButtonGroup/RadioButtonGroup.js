@@ -9,7 +9,7 @@ const { prefix } = settings;
 export default class RadioButtonGroup extends React.Component {
   state = { selected: this.props.valueSelected || this.props.defaultSelected };
 
-  static propTypes = {
+  static propTypes /*#__PURE__*/ = {
     /**
      * Provide a collection of <RadioButton> components to render in the group
      */
@@ -47,7 +47,7 @@ export default class RadioButtonGroup extends React.Component {
     valueSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
-  static defaultProps = {
+  static defaultProps /*#__PURE__*/ = {
     onChange: /* istanbul ignore next */ () => {},
   };
 
