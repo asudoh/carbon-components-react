@@ -46,11 +46,10 @@ export default class Modal extends Component {
      * Specify the content of the modal header title.
      */
     modalHeading: PropTypes.string,
-
     /**
      * Specify the content of the modal header label.
      */
-    modalLabel: PropTypes.string,
+    modalLabel: PropTypes.node,
 
     /**
      * Specify a label to be read by screen readers on the modal root node
@@ -209,8 +208,8 @@ export default class Modal extends Component {
     }
   };
 
-  focusButton = evt => {
-    const primaryFocusElement = evt.currentTarget.querySelector(
+  focusButton = focusContainerElement => {
+    const primaryFocusElement = focusContainerElement.querySelector(
       this.props.selectorPrimaryFocus
     );
     if (primaryFocusElement) {
@@ -222,13 +221,20 @@ export default class Modal extends Component {
     }
   };
 
+  componentDidMount() {
+    if (!this.props.open) {
+      return;
+    }
+    this.focusButton(this.innerModal.current);
+  }
+
   handleTransitionEnd = evt => {
     if (
       this.outerModal.current.offsetWidth &&
       this.outerModal.current.offsetHeight &&
       this.beingOpen
     ) {
-      this.focusButton(evt);
+      this.focusButton(evt.currentTarget);
       this.beingOpen = false;
     }
   };
