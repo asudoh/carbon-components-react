@@ -12,7 +12,7 @@ export default class TileGroup extends React.Component {
     prevValueSelected: this.props.valueSelected,
   };
 
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide a collection of <RadioTile> components to render in the group
      */
@@ -50,7 +50,7 @@ export default class TileGroup extends React.Component {
     valueSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     onChange: /* istanbul ignore next */ () => {},
   };
 

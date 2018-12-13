@@ -9,7 +9,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default class RadioTile extends React.Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * `true` if this tile should be selected.
      */
@@ -51,7 +51,7 @@ export default class RadioTile extends React.Component {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     iconDescription: 'Tile checkmark',
     onChange: () => {},
   };

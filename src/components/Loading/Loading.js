@@ -6,7 +6,7 @@ import { settings } from 'carbon-components';
 const { prefix } = settings;
 
 export default class Loading extends React.Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify whether you want the loading indicator to be spinning or not
      */
@@ -28,7 +28,7 @@ export default class Loading extends React.Component {
     small: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     active: true,
     withOverlay: true,
     small: false,

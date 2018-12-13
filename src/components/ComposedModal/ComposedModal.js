@@ -11,14 +11,14 @@ const { prefix } = settings;
 export default class ComposedModal extends Component {
   state = {};
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     onKeyDown: () => {},
   };
 
   outerModal = React.createRef();
   innerModal = React.createRef();
 
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify an optional className to be applied to the modal root node
      */
@@ -134,7 +134,7 @@ export default class ComposedModal extends Component {
 }
 
 export class ModalHeader extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify an optional className to be applied to the modal header
      */
@@ -193,7 +193,7 @@ export class ModalHeader extends Component {
     buttonOnClick: PropTypes.func,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     iconDescription: 'Close the modal',
     buttonOnClick: () => {},
   };
@@ -268,7 +268,7 @@ export class ModalHeader extends Component {
 }
 
 export class ModalBody extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify an optional className to be added to the Modal Body node
      */
@@ -292,7 +292,7 @@ export class ModalBody extends Component {
 }
 
 export class ModalFooter extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify a custom className to be applied to the Modal Footer container
      */
@@ -346,7 +346,7 @@ export class ModalFooter extends Component {
     children: PropTypes.node,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     onRequestClose: () => {},
     onRequestSubmit: () => {},
   };

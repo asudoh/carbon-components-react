@@ -12,7 +12,7 @@ const { prefix } = settings;
 class SearchLayoutButton extends Component {
   state = { format: 'list' };
 
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * The layout.
      */
@@ -39,7 +39,7 @@ class SearchLayoutButton extends Component {
     onChangeFormat: PropTypes.func,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     labelText: 'Filter',
     iconDescriptionList: 'list',
     iconDescriptionGrid: 'grid',

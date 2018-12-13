@@ -17,7 +17,7 @@ function translateById(id) {
 }
 
 export default class SideNav extends React.Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Required props for accessibility label on the underlying menu
      */
@@ -37,7 +37,7 @@ export default class SideNav extends React.Component {
     translateById: PropTypes.func,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     translateById,
   };
 

@@ -13,7 +13,7 @@ const defaultFormatLabel = (value, label) => {
 };
 
 export default class Slider extends PureComponent {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * The CSS class name for the slider.
      */
@@ -111,7 +111,7 @@ export default class Slider extends PureComponent {
     light: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     hideTextInput: false,
     step: 1,
     stepMuliplier: 4,

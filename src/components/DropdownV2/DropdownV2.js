@@ -16,7 +16,7 @@ const defaultItemToString = item => {
 };
 
 export default class DropdownV2 extends React.Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Disable the control
      */
@@ -83,7 +83,7 @@ export default class DropdownV2 extends React.Component {
     light: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     disabled: false,
     type: 'default',
     itemToString: defaultItemToString,

@@ -15,7 +15,7 @@ const { prefix } = settings;
 const noop = () => undefined;
 
 export default class MultiSelect extends React.Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     ...sortingPropTypes,
 
     /**
@@ -86,7 +86,7 @@ export default class MultiSelect extends React.Component {
     invalidText: PropTypes.string,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     compareItems: defaultCompareItems,
     disabled: false,
     locale: 'en',

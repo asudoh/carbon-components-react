@@ -13,7 +13,7 @@ const { prefix } = settings;
 let didWarnAboutDeprecation = false;
 
 class Dropdown extends PureComponent {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify a label to be read by screen readers on the container node
      */
@@ -89,7 +89,7 @@ class Dropdown extends PureComponent {
     light: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     tabIndex: 0,
     open: false,
     disabled: false,

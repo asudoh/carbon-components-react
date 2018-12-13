@@ -7,7 +7,7 @@ import uid from '../../tools/uniqueId';
 const { prefix } = settings;
 
 export class StructuredListWrapper extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide the contents of your StructuredListWrapper
      */
@@ -34,7 +34,7 @@ export class StructuredListWrapper extends Component {
     ariaLabel: PropTypes.string,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     border: false,
     selection: false,
     ariaLabel: 'Structured list section',
@@ -64,7 +64,7 @@ export class StructuredListWrapper extends Component {
 }
 
 export class StructuredListHead extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide the contents of your StructuredListHead
      */
@@ -89,7 +89,7 @@ export class StructuredListHead extends Component {
 }
 
 export class StructuredListInput extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify an optional className to be applied to the input
      */
@@ -126,7 +126,7 @@ export class StructuredListInput extends Component {
     onChange: PropTypes.func,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     onChange: () => {},
     value: 'value',
     title: 'title',
@@ -155,7 +155,7 @@ export class StructuredListInput extends Component {
 }
 
 export class StructuredListRow extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide the contents of your StructuredListRow
      */
@@ -188,7 +188,7 @@ export class StructuredListRow extends Component {
     onKeyDown: PropTypes.func,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     head: false,
     label: false,
     tabIndex: 0,
@@ -229,7 +229,7 @@ export class StructuredListRow extends Component {
 }
 
 export class StructuredListBody extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide the contents of your StructuredListBody
      */
@@ -248,7 +248,7 @@ export class StructuredListBody extends Component {
     onKeyDown: PropTypes.func,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     onKeyDown: () => {},
   };
 
@@ -269,7 +269,7 @@ export class StructuredListBody extends Component {
 }
 
 export class StructuredListCell extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide the contents of your StructuredListCell
      */
@@ -291,7 +291,7 @@ export class StructuredListCell extends Component {
     noWrap: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     head: false,
     noWrap: false,
   };

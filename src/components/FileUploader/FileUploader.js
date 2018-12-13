@@ -13,7 +13,7 @@ const { prefix } = settings;
 export class FileUploaderButton extends Component {
   state = {};
 
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide a custom className to be applied to the container node
      */
@@ -90,7 +90,7 @@ export class FileUploaderButton extends Component {
     disabled: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     tabIndex: 0,
     disableLabelChanges: false,
     labelText: 'Add file',
@@ -184,7 +184,7 @@ export class FileUploaderButton extends Component {
 }
 
 export class Filename extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify an optional object of styles to be applied inline to the root
      * node
@@ -202,7 +202,7 @@ export class Filename extends Component {
     iconDescription: PropTypes.string,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     onKeyDown: () => {},
     status: 'uploading',
     style: {},
@@ -250,7 +250,7 @@ export class Filename extends Component {
 }
 
 export default class FileUploader extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide a description for the complete/close icon that can be read by screen readers
      */
@@ -310,7 +310,7 @@ export default class FileUploader extends Component {
     accept: PropTypes.arrayOf(PropTypes.string),
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     iconDescription: 'Provide icon description',
     filenameStatus: 'uploading',
     buttonLabel: '',

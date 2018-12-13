@@ -15,7 +15,7 @@ import { defaultFilterItems } from '../ComboBox/tools/filter';
 const { prefix } = settings;
 
 export default class FilterableMultiSelect extends React.Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     ...sortingPropTypes,
     /**
      * Disable the control
@@ -75,7 +75,7 @@ export default class FilterableMultiSelect extends React.Component {
     invalidText: PropTypes.string,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     compareItems: defaultCompareItems,
     disabled: false,
     filterItems: defaultFilterItems,

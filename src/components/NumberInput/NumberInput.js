@@ -17,7 +17,7 @@ export default class NumberInput extends Component {
     this.state = { value };
   }
 
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Specify an optional className to be applied to the wrapper node
      */
@@ -106,7 +106,7 @@ export default class NumberInput extends Component {
     allowEmpty: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     disabled: false,
     hideLabel: false,
     iconDescription: 'choose a number',

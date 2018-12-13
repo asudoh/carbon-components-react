@@ -7,7 +7,7 @@ import React from 'react';
  * the `refKey` prop.
  */
 export default class InnerClickListener extends React.Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     children: PropTypes.node.isRequired,
     refKey: PropTypes.string.isRequired,
     onClickOutside: PropTypes.func.isRequired,

@@ -9,7 +9,7 @@ import Icon from '../Icon';
 const { prefix } = settings;
 
 export default class CodeSnippet extends Component {
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Provide the type of Code Snippet
      */
@@ -71,7 +71,7 @@ export default class CodeSnippet extends Component {
     light: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     type: 'single',
     showMoreText: 'Show more',
     showLessText: 'Show less',

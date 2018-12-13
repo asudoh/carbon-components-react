@@ -8,7 +8,7 @@ const { prefix } = settings;
 export default class TimePicker extends Component {
   state = {};
 
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * Pass in the children that will be rendered next to the form control
      */
@@ -99,7 +99,7 @@ export default class TimePicker extends Component {
     light: PropTypes.bool,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     type: 'text',
     pattern: '(1[012]|[1-9]):[0-5][0-9](\\s)?(?i)',
     placeholder: 'hh:mm',

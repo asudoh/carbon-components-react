@@ -101,7 +101,7 @@ const getMenuOffset = (menuBody, menuDirection) => {
 export default class Tooltip extends Component {
   state = {};
 
-  static propTypes /*#__PURE__*/ = {
+  static propTypes /*#__PURE_CLASS_PROPERTY__*/ = {
     /**
      * The ID of the trigger button.
      */
@@ -194,7 +194,7 @@ export default class Tooltip extends Component {
     tabIndex: PropTypes.number,
   };
 
-  static defaultProps /*#__PURE__*/ = {
+  static defaultProps /*#__PURE_CLASS_PROPERTY__*/ = {
     open: false,
     direction: DIRECTION_BOTTOM,
     showIcon: true,
