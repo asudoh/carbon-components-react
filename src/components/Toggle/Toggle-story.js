@@ -1,3 +1,10 @@
+/**
+ * Copyright IBM Corp. 2016, 2018
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -7,6 +14,7 @@ import ToggleSkeleton from '../Toggle/Toggle.Skeleton';
 
 const toggleProps = () => ({
   className: 'some-class',
+  labelText: text('Label for toggle button input', ''),
   labelA: text('Label for untoggled state (labelA)', 'Off'),
   labelB: text('Label for toggled state (labelB)', 'On'),
   onChange: action('onChange'),
