@@ -7,9 +7,13 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import warning from 'warning';
 import { settings } from 'carbon-components';
+import { breakingChangesX } from '../../internal/FeatureFlags';
 
 const { prefix } = settings;
+
+let didWarnAboutDeprecation = false;
 
 export default class InlineCheckbox extends React.Component {
   static propTypes = {
@@ -98,10 +102,20 @@ export default class InlineCheckbox extends React.Component {
       onKeyDown,
       title = undefined,
     } = this.props;
+
+    if (onClick && !breakingChangesX && __DEV__) {
+      warning(
+        didWarnAboutDeprecation,
+        'The `onClick` prop in `InlineCheckbox` component will be removed in the next release of ' +
+          '`carbon-components-react`. Please use `onChange` instead.'
+      );
+      didWarnAboutDeprecation = true;
+    }
+
     const inputProps = {
       id,
       name,
-      onClick,
+      onClick: breakingChangesX ? undefined : onClick,
       onChange: evt => {
         onChange(evt.target.checked, id, evt);
       },
