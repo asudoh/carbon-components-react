@@ -8,6 +8,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
+import warning from 'warning';
 import { iconCaretDown } from 'carbon-icons';
 import { settings } from 'carbon-components';
 import Icon from '../Icon';
@@ -32,6 +33,12 @@ const Select = ({
   forwardRef: ref,
   ...other
 }) => {
+  if (__DEV__) {
+    warning(
+      !inline || !helperText,
+      'Detected `helperText` prop is used in inline mode of our `<Select>` component. That is not supported.'
+    );
+  }
   const selectClasses = classNames({
     [`${prefix}--select`]: true,
     [`${prefix}--select--inline`]: inline,
@@ -87,8 +94,7 @@ const Select = ({
             description={iconDescription}
           />
         )}
-        {!componentsX && helper}
-        {componentsX && inline && helper}
+        {!componentsX && !inline && helper}
         {error}
       </div>
     </div>
