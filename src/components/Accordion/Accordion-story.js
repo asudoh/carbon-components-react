@@ -17,6 +17,8 @@ import Select from '../Select';
 import SelectItem from '../SelectItem';
 import AccordionSkeleton from '../Accordion/Accordion.Skeleton';
 
+import 'carbon-components/scss/components/accordion/_accordion.scss';
+
 const props = {
   onClick: action('onClick'),
   onHeadingClick: action('onHeadingClick'),

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './polyfills';
-import './_container.scss';
+import 'carbon-components/scss/globals/scss/_css--helpers.scss';
 
 export default class Container extends Component {
   render() {

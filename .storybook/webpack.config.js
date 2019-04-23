@@ -42,6 +42,8 @@ const styleLoaders = [
     options: {
       includePaths: [path.resolve(__dirname, '..', 'node_modules')],
       data: `
+        $css--font-face: true;
+        $css--reset: true;
         $feature-flags: (
           components-x: ${useExperimentalFeatures},
           breaking-changes-x: ${useBreakingChanges},
